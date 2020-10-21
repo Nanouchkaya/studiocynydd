@@ -7,7 +7,7 @@ mailchimp.setConfig({
   server: 'us16',
 });
 
-const listId = "bb1617605b";
+const listId = "b4733ef884";
 
 export default handler.post(async (req, res) => {
   const result = await mailchimp.lists.addListMember(listId, {

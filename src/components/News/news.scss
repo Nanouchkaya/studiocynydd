@@ -1,0 +1,22 @@
+.news {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .caroussel { 
+    background-color: $c-white;
+    padding: $padding-mobile;
+    .slide {
+      animation: slideFromLeft 300ms 100ms forwards;
+    }
+  }
+  
+  ul {
+    display: flex;
+    justify-content: center;
+  }
+  li {
+    list-style: inside;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+}

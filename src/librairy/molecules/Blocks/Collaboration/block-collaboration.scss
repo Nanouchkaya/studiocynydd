@@ -1,0 +1,39 @@
+.block-collaboration {
+  margin: $margin-mobile auto;
+
+  &-infos {
+    background-color: rgba($c-neutral, .5);
+  }
+  
+  em {
+    display: block;
+    font-family: $font-title;
+    font-size: 1.1em;
+    padding: $padding-mobile $padding-mobile;
+  }
+
+  &-url {
+    display: block;
+    padding: $padding-mobile 0;
+
+    &:hover {
+      color: $c-primary;
+    }
+  }
+}
+
+@media screen and (min-width: $bp-medium) {
+  .block-collaboration {
+    margin: 0 $margin-screen;
+  
+    &-url {
+      padding: 0;
+      margin-top: calc(#{$padding-screen} / 2);
+    }
+    
+    em {
+      font-size: 1.2em;
+      padding: $padding-screen $padding-screen 0;
+    }
+  }
+}

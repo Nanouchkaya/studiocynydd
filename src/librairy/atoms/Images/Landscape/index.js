@@ -1,0 +1,1 @@
+export { LandscapeImg } from './landscape';

@@ -1,0 +1,25 @@
+@import 'src/assets/sass/variable',
+'src/assets/sass/global',
+'src/assets/sass/mixin',
+'src/assets/sass/animation',
+'src/assets/sass/reset',
+'src/assets/sass/carousel',
+'src/assets/sass/nProgress';
+
+/* Organism styles */
+@import '@components/Team/team.scss';
+@import '@components/News/news.scss';
+@import '@components/Navbar/navbar.scss';
+@import '@components/Header/header.scss';
+@import '@components/Footer/footer.scss';
+@import '@components/Services/services.scss';
+@import '@components/LastPrestation/last-prestation.scss';
+@import '@components/Newsletter/newsletter.scss';
+@import '@components/Testimonials/testimonials.scss';
+@import '@components/InstaFeed/instafeed.scss';
+@import '@components/FeaturedItems/featured-items.scss';
+
+/* Atoms styles */
+@import '@librairy/atoms/style.scss';
+@import '@librairy/molecules/style.scss';
+

@@ -1,0 +1,1 @@
+export { BlockRetailer } from './retailer'

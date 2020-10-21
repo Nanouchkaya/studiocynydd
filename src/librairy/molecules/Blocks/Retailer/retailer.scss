@@ -1,0 +1,28 @@
+.block-retailer {
+  padding: $padding-mobile;
+  background-color: rgba($c-neutral, .3);
+
+  &-infos {
+    line-height: 1.5rem;
+  }
+
+  &-products {
+    display: block;
+    font-style: italic;
+  }
+
+  address {
+    font-style: normal;
+    padding: calc(#{$padding-mobile} / 2) 0 0;
+  }
+}
+
+@media screen and (min-width: $bp-medium){
+  .block-retailer {
+    padding: $padding-screen;
+  
+    address {
+      padding: calc(#{$padding-screen} / 2) 0 0;
+    }
+  } 
+}

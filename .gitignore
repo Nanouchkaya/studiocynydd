@@ -1,0 +1,14 @@
+.next
+/node_modules
+/src/api
+/src/pages/products
+.env
+.env.local
+
+ex-index.js
+
+yarn.lock
+.npmrc
+.yarnrc
+
+gsap-bonus.tgz

@@ -1,0 +1,48 @@
+.lastprestation {
+  margin: $margin-mobile auto;
+
+  span {
+    font-style: italic;
+  }
+
+  &-details {
+    div {
+      padding: $padding-mobile;
+      background-color: rgba($c-neutral, .3);
+    }
+
+    button {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}
+
+@media screen and (min-width: $bp-large) {
+  .lastprestation {
+    &-content {
+      width: 80%;
+      margin: auto;
+
+      position: relative;
+    }
+    &-details {
+      font-size: $font-medium;
+      width: 45%;
+      min-width: 500px;
+      
+      position: absolute;
+      right: $padding-screen;
+      top: 0;
+      
+      div {
+        padding: $padding-screen;
+        background-color: rgba($c-white, .9);
+      }
+
+      button {
+        margin-right: 0;
+      }
+    }
+  }
+}

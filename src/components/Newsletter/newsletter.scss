@@ -1,0 +1,60 @@
+.newsletter {
+  margin: $margin-mobile auto;
+  
+  &-content {
+    background-color: rgba($c-tertiary, .08);
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    margin: auto;
+    padding: calc(#{$padding-mobile} / 2);
+  }
+
+  .form-message {
+    color: $c-primary;
+    font-size: initial;
+    text-align: center;
+    
+    flex: 1 100%;
+    
+    p {
+      padding: 0 calc(#{$padding-mobile} / 2)
+    }
+  }
+}
+
+@media screen and (min-width: $bp-medium) {
+  .newsletter {
+    width: 80%;
+    margin: $margin-screen auto;
+    
+    form {
+      padding: $padding-screen;
+      flex-direction: row;
+
+      label {
+        white-space: nowrap;
+      }
+      .form-input {
+        flex: 1 100%;
+        max-width: 40ch;
+      }
+      
+      .button-primary {
+        margin: 0 calc(#{$margin-screen} / 4);
+      }
+    }
+
+    .form-message {
+      p {
+        padding: 0 calc(#{$padding-screen} / 2)
+      }
+    }  
+
+  }
+}

@@ -1,0 +1,134 @@
+/* TOP BOTTOM ANCHORS */
+.anchors {
+  display: none;
+}
+
+/* BUTTONS */
+.button-secondary, .button-primary {
+  display: block;
+  cursor: pointer;
+  padding: calc(#{$padding-mobile} / 1.5) $padding-mobile;
+  margin: calc(#{$margin-mobile} / 2) auto;
+  width: fit-content;
+
+  border-radius: 5px;
+  color: $c-white!important;
+  text-decoration: none;
+  text-align: center;
+  font-weight: bold;
+  font-family: $font-title;
+  transition: 200ms all ease-in-out;
+
+  &:hover {
+    background-color: $c-tertiary;
+  }
+}
+
+.button-primary {
+  background-color: $c-primary;
+}
+
+.button-secondary {
+  background-color: $c-secondary;
+}
+
+/* LINKS */
+.nav-link {
+  text-transform: uppercase;
+  display: block;
+  padding: 1rem .2rem 0.4rem;
+  margin: 0 .8rem 0.6rem;
+  color: $c-white;
+  font-weight: 700;
+  text-decoration-color: transparent;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  
+  
+  &:visited {
+    color: $c-white;
+  }
+  &:hover, &:focus {
+    border-bottom-color: $c-white;
+  }
+
+  &--active, &--active:hover {
+    border-bottom-color: $c-white;
+  }
+}
+
+.list-link {
+  text-transform: uppercase;
+  text-decoration-color: unset;
+  color: $c-tertiary;
+
+  &:after {
+    filter: invert(99%) sepia(2%) saturate(87%) hue-rotate(240deg) brightness(104%) contrast(96%);
+  }
+}
+
+.list-link:hover, .list-link:active, .list-link:focus {
+  color: $c-primary;
+}
+
+.goTo-link {
+  display: block;
+  cursor: pointer;
+  padding: calc(#{$padding-mobile} / 1.5) $padding-mobile;
+  margin: calc(#{$margin-mobile} / 2) auto;
+  width: fit-content;
+
+  font-weight: bold;
+  font-family: $font-title;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 300ms all ease-in-out;
+
+  border-bottom: 3px solid $c-primary;
+  color: $c-primary;
+
+  text-decoration: none;
+
+  &:hover {
+    border-bottom: 3px solid $c-tertiary;
+    color: $c-tertiary!important;
+  }
+  &:visited {
+    color: $c-primary;
+  }
+}
+
+@media screen and (min-width: $bp-medium) {
+  /* TOP BOTTOM ANCHORS */
+.anchors {
+  display: initial;
+  position: fixed;
+  bottom: $padding-screen;
+  right: $padding-screen;
+  text-transform: uppercase;
+  font-size: .8rem;
+  font-weight: 800;
+  padding: calc(#{$padding-screen} / 2.5) calc(#{$padding-screen} / 2);
+
+  a {
+    text-decoration: none;
+    color: $c-primary
+  }
+}
+
+  .button-secondary, .button-primary {
+    padding: calc(#{$padding-screen} / 2.5) calc(#{$padding-screen} / 2);
+    margin: calc(#{$margin-screen} / 4) 0;
+  }
+
+  .button-primary {
+    text-transform: uppercase;
+  }
+  
+  .list-link {
+    text-transform: initial;
+    text-decoration-color: currentColor;
+    
+    padding: 0;
+  }
+}

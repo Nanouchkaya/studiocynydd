@@ -1,0 +1,51 @@
+{
+  "name": "studiocynydd",
+  "version": "1.0.0",
+  "description": "Cynydd commercial website",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "lint:fix-react": "eslint . --fix --ext .js, .jsx"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cynydd/studiocynydd"
+  },
+  "keywords": [],
+  "author": "Claudine Brun",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Cynydd/studiocynydd/issues"
+  },
+  "homepage": "https://github.com/Cynydd/studiocynydd#readme",
+  "dependencies": {
+    "@contentful/rich-text-react-renderer": "^14.1.1",
+    "@mailchimp/mailchimp_marketing": "^3.0.15",
+    "contentful": "^7.14.6",
+    "date-fns": "^2.16.1",
+    "image-trace-loader": "^1.0.2",
+    "imagemin-mozjpeg": "^9.0.0",
+    "imagemin-optipng": "^8.0.0",
+    "next": "^9.5.3",
+    "next-compose-plugins": "^2.2.0",
+    "next-connect": "^0.9.0",
+    "next-optimized-images": "^2.6.2",
+    "next-transpile-modules": "^4.1.0",
+    "nodemailer": "^6.4.11",
+    "nprogress": "^0.2.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-hook-form": "6.8.5",
+    "react-map-gl": "^5.2.9",
+    "react-responsive-carousel": "^3.2.9",
+    "sass": "^1.27.0",
+    "uuid": "^8.1.0"
+  },
+  "devDependencies": {}
+}

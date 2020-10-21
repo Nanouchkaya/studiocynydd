@@ -1,0 +1,1 @@
+export { BlockTestimonial } from './block-testimonial';

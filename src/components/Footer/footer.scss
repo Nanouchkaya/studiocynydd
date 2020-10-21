@@ -1,0 +1,33 @@
+footer {
+  display: none;
+  background-color: $c-tertiary;
+  margin-top: $margin-mobile;
+
+  h3 {
+    color: $c-neutral;
+  }
+}
+
+@media screen and (min-width: $bp-medium) {
+  footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    
+    margin-top: $margin-screen;
+
+    padding: $padding-screen;
+    border-top: 2px solid $c-white;
+
+    h3 {
+      margin: $padding-mobile 0;
+    }
+    li {
+      margin: calc(#{$padding-mobile} / 2) 0;
+    }
+
+    .list-link, .list-link:visited {
+      color: $c-white;
+    }
+  }
+}

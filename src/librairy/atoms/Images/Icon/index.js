@@ -1,0 +1,1 @@
+export { IconMini } from './icon-mini';

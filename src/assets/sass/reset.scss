@@ -1,0 +1,58 @@
+html {
+  box-sizing: border-box;
+  font-size: 100%;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+html, body, div,
+form, fieldset, legend, caption, label,
+h1, h2, h3, h4, h5, h6,
+p, blockquote, pre
+{
+    font-size: 100%;
+    font-weight: normal;
+
+    margin: 0;
+    padding: 0;
+
+    vertical-align: baseline;
+
+    border: 0;
+    outline: 0;
+    background: transparent;
+}
+
+ol, ul {
+  list-style: none;
+  padding: 0 0 0 .8rem;
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  transition: $t-basic;
+  text-decoration: currentColor underline;
+  color: $c-tertiary
+}
+
+a[rel] {
+  // ici règles pour indiquer que lien externe (icon after)
+}
+
+button {
+  border: none;
+  background-color: transparent;
+  font: unset;
+}
+
+input:-internal-autofill-selected  {
+  color: $c-darkgrey;
+}

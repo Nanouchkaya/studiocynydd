@@ -1,0 +1,14 @@
+.testimonials {
+  margin: $margin-mobile auto;
+
+  &-content {
+    background-color: rgba($c-neutral, 0.3);
+  }
+}
+
+@media screen and (min-width: $bp-medium) {
+  .testimonials {
+   width: 80%;
+   margin: $margin-screen auto;
+  }
+}

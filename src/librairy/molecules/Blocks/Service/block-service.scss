@@ -1,0 +1,48 @@
+.block-service {
+  position: relative;
+  z-index: 1;
+  margin: auto;
+  padding: $padding-mobile;
+  
+  background-color: rgba($c-neutral, .3);
+  &-details {
+    position: relative;
+  }
+
+  button {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media screen and (min-width: $bp-medium) {
+  .block-service {
+    padding: $padding-screen;
+
+    &-details {
+      font-size: $font-medium;
+      position: absolute;
+      width: 50%;
+      bottom: $margin-screen;
+      right: $margin-screen;
+    }
+    
+    p {
+      background-color: rgba($c-white, .9);
+    }
+  }
+}
+
+@media screen and (min-width: $bp-large) {
+  .block-service {
+    width: 80%;
+
+    &-details {
+      width: 45%;
+    }
+
+    button {
+      margin-right: 0;
+    }
+  }
+}

@@ -1,0 +1,1 @@
+export { SquareImg } from './square';

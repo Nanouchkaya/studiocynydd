@@ -1,0 +1,6 @@
+Sitemap: https://studiocynydd.fr/sitemap
+
+User-agent: *
+Allow: /*
+
+Disallow: /api/*

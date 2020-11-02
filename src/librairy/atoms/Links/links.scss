@@ -36,7 +36,7 @@
 .nav-link {
   text-transform: uppercase;
   display: block;
-  padding: 1rem .2rem 0.4rem;
+  padding: 1rem min(0, .2rem) 0.4rem;
   margin: 0 .8rem 0.6rem;
   color: $c-white;
   font-weight: 700;

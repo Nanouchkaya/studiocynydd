@@ -17,9 +17,11 @@ export const Layout = ({
         <meta charSet="utf-8" />
         <meta name="theme-color" content="#8d0c22" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <meta name="description" content="Créations du Studio Cynydd, boutique et informations." />
+        <meta name="description" content="Boutique et information du Studio Cynydd, créations artisanales, fait-main français, designer graphique." />
         <meta name="author" content="Studio Cynydd" />
-        <meta name="keywords" content="Papeterie, Fait-main, boutique, Cynydd, Rennes, cadeaux"></meta>
+        <meta name="keywords" content="Papeterie, Fait-main, boutique, Cynydd, Rennes, cadeaux" />
+        <meta property="og:title" content="European Travel Destinations" />
+        <meta property="og:description" content="Boutique et information du Studio Cynydd, créations artisanales, fait-main français, designer graphique." />
       </Head>
       <Header type={type} herologo={herologo} slogan={slogan} />
       <main style={{position:'relative'}}>

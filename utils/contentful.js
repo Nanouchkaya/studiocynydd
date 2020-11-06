@@ -73,6 +73,17 @@ export async function getFeaturedItems() {
   console.log(`Error getting featured items.`)
 }
 
+export async function getCategories() {
+  const entries = await getClient().getEntries({
+    content_type: 'category',
+    order: 'fields.order'
+  })
+  const categories = entries.items.filter(category => category.fields.featuredItem)
+  if (categories) return categories.map(item => parseCategory(item))
+
+  console.log(`Error getting featured items.`)
+}
+
 export async function getTestimonials() {
   const testimonials = await getClient().getEntries({
     content_type: 'testimonial'
@@ -137,6 +148,7 @@ function parseCategory({ fields }) {
     title: fields?.title || null,
     featuredItem: fields?.featuredItem || false,
     image: fields?.icon?.fields.file || '',
+    thumbnail: `${fields?.icon?.fields.file.url}?fit=thumb` || '',
     description: fields?.description || '',
     url: fields?.url || '',
   }

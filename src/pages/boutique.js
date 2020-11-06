@@ -1,17 +1,43 @@
-import { Layout } from "@components/index";
-import { GoToLink, H1, Paragraph, Subtitle } from "@librairy/atoms";
-import { getAssetById } from "@utils/contentful";
+import { Layout, News } from "@components/index";
+import { ButtonSecondary, H1, H3, H4, ListLink, SquareImg, Subtitle, Thumbnail } from "@librairy/atoms";
+import { ProductCategory } from "@librairy/molecules/Category";
+import { getAssetById, getCategories } from "@utils/contentful";
+import { v4 as uuid } from 'uuid';
 
-const Shop = ({herologo}) => {
+const Shop = ({ herologo, categories }) => {
   return (
     <Layout title="Boutique" type="page-header" herologo={herologo}>
     <H1>La Boutique</H1>
-    <Subtitle>A venir</Subtitle>
-    <section id="about">
-      <Paragraph>
-      Bientôt vous pourrez commander sur notre site ! <br />
-      D'ici là, retrouvez tous nos produits sur Etsy.</Paragraph>
-      <GoToLink href="https://www.etsy.com/fr/shop/Cynydd" rel>Aller sur notre boutique Etsy</GoToLink>
+    <Subtitle>Découvrez toutes les créations du Studio Cynydd</Subtitle>
+    <News />
+    <section className="shop">
+      <aside className="shop-navigation">
+        <div className="shop-navigation-sections">
+          <article className="shop-navigation-section">
+            <H3>Rechercher un article</H3>
+            <input type="search" placeholder="rechercher" className="searchbar" />
+          </article>
+          <article className="shop-navigation-section">
+            <H3>Toutes les catégories</H3>
+            <ul>
+            {
+              categories.map(category => <ListLink key={uuid()} href={category.url}>{category.title}</ListLink>)
+            }   
+            </ul>
+          </article>
+        </div>
+      </aside>
+
+      <article className="cards">
+      { categories.map(category => (
+        <div className="card" style={{}} key={uuid()}>
+          <Thumbnail src={category.thumbnail} alt={category.title} />
+          <ButtonSecondary href={category.url}>{category.title}</ButtonSecondary>
+       </div>
+       ))
+      }
+      </article>
+
     </section>
     </Layout>
   )
@@ -23,6 +49,7 @@ export async function getStaticProps() {
   return {
     props : {
       herologo: await getAssetById('13trf7K2jrx5M7fWiW5pbo'),
+      categories: await getCategories(),
     }
   }
 }

@@ -74,14 +74,24 @@ export async function getFeaturedItems() {
 }
 
 export async function getCategories() {
-  const entries = await getClient().getEntries({
+  const categories = await getClient().getEntries({
     content_type: 'category',
     order: 'fields.order'
   })
-  const categories = entries.items.filter(category => category.fields.featuredItem)
-  if (categories) return categories.map(item => parseCategory(item))
+  if (categories) return categories.items.map(item => parseCategory(item))
+  
+  console.log('Error getting all categories.')
+}
 
-  console.log(`Error getting featured items.`)
+export async function getProductsByCategory(categoryID) {
+  const productsCategory = await getClient().getEntries({
+    content_type: 'product',
+    'fields.categories.sys.id': categoryID,
+  });
+  
+  if (productsCategory) return productsCategory.items.map(item => parseProduct(item))
+
+  console.log(`Error getting products for category ${categoryID}.`)
 }
 
 export async function getTestimonials() {
@@ -146,11 +156,27 @@ function parsePrestation({ fields }) {
 function parseCategory({ fields }) {
   return {
     title: fields?.title || null,
+    slug: fields?.slug,
     featuredItem: fields?.featuredItem || false,
     image: fields?.icon?.fields.file || '',
     thumbnail: `${fields?.icon?.fields.file.url}?fit=thumb` || '',
     description: fields?.description || '',
     url: fields?.url || '',
+  }
+}
+
+function parseProduct({ fields }) {
+  return {
+    title: fields?.productName || '',
+    slug: fields?.slug || '',
+    categories: fields?.categories || [],
+    price: fields?.price || null,
+    thumbnail: `${fields?.images?.fields.file.url}?fit=thumb` || '',
+    images: fields?.images || [],
+    description: fields?.productDescription || '',
+    tags: fields?.relatedProductTag || [],
+    isCustomizable: fields?.personnalisation || false,
+    isBestSeller: fields?.bestSeller || false,
   }
 }
 

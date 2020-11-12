@@ -1,55 +1,46 @@
-import { Layout, News } from "@components/index";
-import { ButtonSecondary, H1, H3, H4, ListLink, SquareImg, Subtitle, Thumbnail } from "@librairy/atoms";
-import { ProductCategory } from "@librairy/molecules/Category";
-import { getAssetById, getCategories } from "@utils/contentful";
-import { v4 as uuid } from 'uuid';
+import { Layout, News, Shop } from "@components/index";
+import { H1, Subtitle } from "@librairy/atoms";
+import { getAssetById, getCategories, getProductsByCategory } from "@utils/contentful";
 
-const Shop = ({ herologo, categories }) => {
+const ShopPage = ({ herologo, categories, products }) => {
+  console.log({products})
   return (
     <Layout title="Boutique" type="page-header" herologo={herologo}>
-    <H1>La Boutique</H1>
-    <Subtitle>Découvrez toutes les créations du Studio Cynydd</Subtitle>
-    <News />
-    <section className="shop">
-      <aside className="shop-navigation">
-        <div className="shop-navigation-sections">
-          <article className="shop-navigation-section">
-            <H3>Rechercher un article</H3>
-            <input type="search" placeholder="rechercher" className="searchbar" />
-          </article>
-          <article className="shop-navigation-section">
-            <H3>Toutes les catégories</H3>
-            <ul>
-            {
-              categories.map(category => <ListLink key={uuid()} href={category.url}>{category.title}</ListLink>)
-            }   
-            </ul>
-          </article>
-        </div>
-      </aside>
-
-      <article className="cards">
-      { categories.map(category => (
-        <div className="card" style={{}} key={uuid()}>
-          <Thumbnail src={category.thumbnail} alt={category.title} />
-          <ButtonSecondary href={category.url}>{category.title}</ButtonSecondary>
-       </div>
-       ))
-      }
-      </article>
-
-    </section>
+      <H1>La Boutique</H1>
+      <Subtitle>Découvrez toutes les créations du Studio Cynydd</Subtitle>
+      <News />
+      <Shop categories={categories} products={products} />
     </Layout>
   )
 }
 
-export default Shop;
+export default ShopPage;
 
-export async function getStaticProps() {
+// This function gets called at build time
+export async function getStaticPaths() {
+  // Call an external API endpoint to get posts
+  const categories = await getCategories();
+
+  // Get the paths we want to pre-render based on posts
+  const paths = categories.map((category) => ({
+    params: { categoryTitle: category.title },
+  }))
+
+  // We'll pre-render only these paths at build time.
+  // { fallback: false } means other routes should 404.
+  return { paths, fallback: false }
+}
+
+export async function getStaticProps({ params }) {
+  console.log({params})
   return {
     props : {
       herologo: await getAssetById('13trf7K2jrx5M7fWiW5pbo'),
       categories: await getCategories(),
+      products: await getProductsByCategory('768Ni6CBlyGiPUdPUPhhSx'),
     }
   }
 }
+
+
+// 768Ni6CBlyGiPUdPUPhhSx

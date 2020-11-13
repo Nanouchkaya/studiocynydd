@@ -51,6 +51,3 @@ export async function getStaticProps({ params }) {
     }
   }
 }
-
-
-// 768Ni6CBlyGiPUdPUPhhSx

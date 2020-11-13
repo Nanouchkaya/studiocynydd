@@ -74,29 +74,43 @@ export async function getFeaturedItems() {
 }
 
 export async function getCategories() {
-  const categories = await getClient().getEntries({
+  const allCategories = await getClient().getEntries({
     content_type: 'category',
+    select: 'sys.id,fields',
     order: 'fields.order'
   })
-  if (categories) return categories.items.map(item => parseCategory(item))
+
+  if (allCategories) return allCategories.items.map(category => parseCategory(category))
   
   console.log('Error getting all categories.')
 }
 
-export async function getProductsByCategory(categoryID) {
-  const productsCategory = await getClient().getEntries({
-    content_type: 'product',
-    'fields.categories.sys.id': categoryID,
-  });
-  
-  if (productsCategory) return productsCategory.items.map(item => parseProduct(item))
+export async function getProductsByCategory(slug) {
+  const categoriesIdEqualToSlug = await getClient().getEntries({
+    content_type: 'category',
+    select: 'sys.id,fields.slug',
+    'fields.slug': slug,
+  }) //should match one result only (see contentful unique field)
 
-  console.log(`Error getting products for category ${categoryID}.`)
+  if (categoriesIdEqualToSlug.items.length > 0) {
+    const productsCategory = await getClient().getEntries({
+      content_type: 'product',
+      'fields.categories.sys.id': categoriesIdEqualToSlug.items[0].sys.id, 
+    });
+
+    if (productsCategory.total > 0) return productsCategory.items.map(product => parseProduct(product))
+  }
+  console.log(`Error getting products for category ${slug}.`)
+  return {
+    error: true,
+    message: 'Aucun produit pour cette catégorie',
+  }
 }
 
 export async function getTestimonials() {
   const testimonials = await getClient().getEntries({
-    content_type: 'testimonial'
+    content_type: 'testimonial',
+    order: '-fields.date',
   })
 
   if(testimonials) return parseEntries(testimonials, parseTestimonial)
@@ -153,8 +167,9 @@ function parsePrestation({ fields }) {
   };
 }
 
-function parseCategory({ fields }) {
+function parseCategory({ fields, sys }) {
   return {
+    id: sys.id,
     title: fields?.title || null,
     slug: fields?.slug,
     featuredItem: fields?.featuredItem || false,
@@ -171,7 +186,7 @@ function parseProduct({ fields }) {
     slug: fields?.slug || '',
     categories: fields?.categories || [],
     price: fields?.price || null,
-    thumbnail: `${fields?.images?.fields.file.url}?fit=thumb` || '',
+    thumbnail: `${fields?.images?.fields?.file.url}?fit=thumb` || '',
     images: fields?.images || [],
     description: fields?.productDescription || '',
     tags: fields?.relatedProductTag || [],

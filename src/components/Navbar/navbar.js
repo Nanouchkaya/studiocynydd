@@ -52,7 +52,7 @@ const navItems = [
     inScreenNav : true
   },
   {
-    href: 'boutique',
+    href: '/boutique',
     text: 'Boutique',
     inBurgerMenu: false,
     inScreenNav : true

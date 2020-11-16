@@ -85,6 +85,17 @@ export async function getCategories() {
   console.log('Error getting all categories.')
 }
 
+export async function getProducts() { // only general informations for cards view
+  const allProducts = await getClient().getEntries({
+    content_type: 'product',
+    select: 'fields.slug,fields.productName,fields.price,fields.images,fields.bestSeller',
+  })
+
+  if (allProducts) return allProducts.items.map(product => parseProduct(product))
+  
+  console.log('Error getting all products.')
+}
+
 export async function getProductsByCategory(slug) {
   const categoriesIdEqualToSlug = await getClient().getEntries({
     content_type: 'category',
@@ -105,6 +116,21 @@ export async function getProductsByCategory(slug) {
     error: true,
     message: 'Aucun produit pour cette catégorie',
   }
+}
+
+export async function getProductDetails(slug) { // for product detailed page
+  const productDetails = await getClient().getEntries({
+    content_type: 'product',
+    'fields.slug': slug,
+  })
+  
+  if (productDetails.items.length > 0) {
+    const selectedProductDetails = productDetails.items[0]
+    console.log({selectedProductDetails})
+    return parseProductDetails(selectedProductDetails)
+  }
+  
+  console.log(`Error getting details for product ${slug}.`)
 }
 
 export async function getTestimonials() {
@@ -181,14 +207,30 @@ function parseCategory({ fields, sys }) {
 }
 
 function parseProduct({ fields }) {
+  let thumbnail
+  if (fields?.images) {
+    const firstImage = fields.images[0].fields.file.url;
+    thumbnail = `${firstImage}?fit=thumb`
+  }
   return {
     title: fields?.productName || '',
     slug: fields?.slug || '',
+    price: fields?.price || null,
+    thumbnail: thumbnail || '',
+    isBestSeller: fields?.bestSeller || false,
+  }
+}
+
+function parseProductDetails({ fields }) {
+  console.log({fields})
+  return {
+    name: fields?.productName || 'Sans nom',
     categories: fields?.categories || [],
     price: fields?.price || null,
-    thumbnail: `${fields?.images?.fields?.file.url}?fit=thumb` || '',
+    variation: fields?.variation || {sys: {}, fields: {}},
+    deliveryFee: fields?.deliveryFee || {sys: {}, fields: {}},
     images: fields?.images || [],
-    description: fields?.productDescription || '',
+    description: fields?.productDescription || 'Aucune description',
     tags: fields?.relatedProductTag || [],
     isCustomizable: fields?.personnalisation || false,
     isBestSeller: fields?.bestSeller || false,

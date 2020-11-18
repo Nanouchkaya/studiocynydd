@@ -11,6 +11,7 @@ export { LastPrestation } from '@components/LastPrestation';
 export { Newsletter } from '@components/Newsletter';
 export { Testimonials } from '@components/Testimonials';
 export { InstaFeed } from '@components/InstaFeed';
+export { ShopNav } from '@components/ShopNav';
 
 // Others
 export { Map } from "@components/Map";

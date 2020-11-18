@@ -12,6 +12,10 @@
     filter: invert(66%) sepia(58%) saturate(417%) hue-rotate(348deg) brightness(88%) contrast(85%);
   }
 
+  a.icon-mini:hover img {
+    filter: invert(9%) sepia(90%) saturate(3830%) hue-rotate(348deg) brightness(98%) contrast(102%);
+  }
+
   .feed-container {
     display: flex;
     flex-wrap: wrap;

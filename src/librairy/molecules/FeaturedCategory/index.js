@@ -1,0 +1,1 @@
+export { FeaturedCategory } from './featured-category'

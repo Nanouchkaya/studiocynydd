@@ -1,7 +1,7 @@
 export const socialNetworkLinks = {
   instagram: 'https://www.instagram.com/studiocynydd/',
   facebook: 'https://www.facebook.com/cynyddshop',
-  twitter: 'https://twitter.com/cynyddshop',
+  tiktok: 'https://vm.tiktok.com/ZSqfnTaE',
   pinterest: 'https://fr.pinterest.com/cynydd63/'
 };
 

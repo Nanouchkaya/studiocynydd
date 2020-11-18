@@ -10,7 +10,7 @@ export const News = () => {
     const moveToNextSlideOrBackToFirst = (activeSlideIndex >= totalSlides) ? 1 : activeSlideIndex + 1;
 
     setActiveSlideIndex(moveToNextSlideOrBackToFirst);
-  },5000);
+  },20000);
 
 
 	return (
@@ -22,17 +22,17 @@ export const News = () => {
           className="slide"
           data-index={1}
           alt="slide 1"
-          src="https://picsum.photos/700/300?random=1" />
+          src="https://picsum.photos/1200/300?random=1" />
         <img
           className="slide"
           data-index={2}
           alt="slide 2"
-          src="https://picsum.photos/700/300?random=2" />
+          src="https://picsum.photos/1200/300?random=2" />
         <img
           className="slide"
           data-index={3}
           alt="slide 3"
-          src="https://picsum.photos/700/300?random=3" />
+          src="https://picsum.photos/1200/300?random=3" />
       </div>
 
       <ul>

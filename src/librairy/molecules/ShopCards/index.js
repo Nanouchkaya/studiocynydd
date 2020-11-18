@@ -1,0 +1,1 @@
+export { ShopCards } from './shop-cards'

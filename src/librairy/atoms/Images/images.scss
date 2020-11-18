@@ -11,20 +11,22 @@
 }
 
 .hero-logo {
-  width: 80%;
+  width: clamp(300px, 80%, 1000px);
   display: block;
   margin: auto;
 }
 
 .logo {
-  width: 40%;
+  width: clamp(200px, 50%, 450px);
   display: block;
   margin: auto;
 }
 
 .icon-mini img {
   min-width: 24px;
-  max-width: 1.5rem;
+  max-width: 24px;
+  min-height: 24px;
+  max-height: 50px;
   filter: invert(100%) sepia(0%) saturate(6256%) hue-rotate(311deg) brightness(105%) contrast(96%);
   transition: $t-basic;
   
@@ -47,11 +49,7 @@
 }
 
 @media screen and (min-width: $bp-medium){
-  .hero-logo {
-    width: 50%;
-  }
-
   .logo {
-    width: 25%
+    margin-bottom: calc(#{$margin-screen * -1});
   }
 }

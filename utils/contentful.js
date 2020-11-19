@@ -88,7 +88,7 @@ export async function getCategories() {
 export async function getProducts() { // only general informations for cards view
   const allProducts = await getClient().getEntries({
     content_type: 'product',
-    select: 'fields.slug,fields.productName,fields.price,fields.images,fields.bestSeller',
+    select: 'fields.slug,fields.productName,fields.price,fields.images,fields.bestSeller,fields.categories',
   })
 
   if (allProducts) return allProducts.items.map(product => parseProduct(product))
@@ -96,27 +96,27 @@ export async function getProducts() { // only general informations for cards vie
   console.log('Error getting all products.')
 }
 
-export async function getProductsByCategory(slug) {
-  const categoriesIdEqualToSlug = await getClient().getEntries({
-    content_type: 'category',
-    select: 'sys.id,fields.slug',
-    'fields.slug': slug,
-  }) //should match one result only (see contentful unique field)
+// export async function getProductsByCategory(slug) {
+//   const categoriesIdEqualToSlug = await getClient().getEntries({
+//     content_type: 'category',
+//     select: 'sys.id,fields.slug',
+//     'fields.slug': slug,
+//   }) //should match one result only (see contentful unique field)
 
-  if (categoriesIdEqualToSlug.items.length > 0) {
-    const productsCategory = await getClient().getEntries({
-      content_type: 'product',
-      'fields.categories.sys.id': categoriesIdEqualToSlug.items[0].sys.id, 
-    });
+//   if (categoriesIdEqualToSlug.items.length > 0) {
+//     const productsCategory = await getClient().getEntries({
+//       content_type: 'product',
+//       'fields.categories.sys.id': categoriesIdEqualToSlug.items[0].sys.id, 
+//     });
 
-    if (productsCategory.total > 0) return productsCategory.items.map(product => parseProduct(product))
-  }
-  console.log(`Error getting products for category ${slug}.`)
-  return {
-    error: true,
-    message: 'Aucun produit pour cette catégorie',
-  }
-}
+//     if (productsCategory.total > 0) return productsCategory.items.map(product => parseProduct(product))
+//   }
+//   console.log(`Error getting products for category ${slug}.`)
+//   return {
+//     error: true,
+//     message: 'Aucun produit pour cette catégorie',
+//   }
+// }
 
 export async function getProductDetails(slug) { // for product detailed page
   const productDetails = await getClient().getEntries({
@@ -126,7 +126,6 @@ export async function getProductDetails(slug) { // for product detailed page
   
   if (productDetails.items.length > 0) {
     const selectedProductDetails = productDetails.items[0]
-    console.log({selectedProductDetails})
     return parseProductDetails(selectedProductDetails)
   }
   
@@ -218,11 +217,11 @@ function parseProduct({ fields }) {
     price: fields?.price || null,
     thumbnail: thumbnail || '',
     isBestSeller: fields?.bestSeller || false,
+    categories: fields?.categories || [],
   }
 }
 
 function parseProductDetails({ fields }) {
-  console.log({fields})
   return {
     name: fields?.productName || 'Sans nom',
     categories: fields?.categories || [],
@@ -277,13 +276,3 @@ function parseRetailer({fields = {}}) {
     }
   }
 }
-
-// function parsePage({ sys, fields }) {
-//   return {
-//     id: sys.id,
-//     title: fields.title,
-//     slug: fields.slug,
-//     content: fields.content,
-//     description: fields.description,
-//   }
-// }

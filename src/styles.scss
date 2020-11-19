@@ -4,7 +4,8 @@
 'src/assets/sass/animation',
 'src/assets/sass/reset',
 'src/assets/sass/carousel',
-'src/assets/sass/nProgress';
+'src/assets/sass/nProgress',
+'src/pages/boutique/shop.scss';
 
 /* Organism styles */
 @import '@components/Team/team.scss';
@@ -18,7 +19,6 @@
 @import '@components/Testimonials/testimonials.scss';
 @import '@components/InstaFeed/instafeed.scss';
 @import '@components/FeaturedItems/featured-items.scss';
-@import '@components/ShopNav/shop-nav.scss';
 
 /* Atoms styles */
 @import '@librairy/atoms/style.scss';

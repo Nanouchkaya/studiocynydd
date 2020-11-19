@@ -3,7 +3,6 @@
   display: flex;
   flex-direction: column;
   margin: $margin-screen auto;
-  padding: $padding-mobile;
 
   &-navigation {
     background-color: rgba($c-neutral, 0.3);
@@ -80,9 +79,11 @@
 }
 
 @media screen and (min-width: $bp-medium){
-  .shop {
+  .shop { 
+    border: 5px solid $c-neutral;
+    width: clamp(200px, 100%, 1200px);
     flex-direction: row;
-    padding: $padding-screen;
+    //padding: $padding-mobile;
     justify-content: center;
 
     &-navigation {
@@ -99,8 +100,8 @@
       }
     }
 
-    .cards {
-      flex: 1 75%;
+    .cards, p {
+      flex: 2;
       padding: $padding-screen;
     }
 

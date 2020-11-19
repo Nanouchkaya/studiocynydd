@@ -21,7 +21,7 @@ export const Layout = ({
         <meta name="author" content="Studio Cynydd" />
         <meta name="keywords" content="Papeterie, Fait-main, boutique, Cynydd, Rennes, cadeaux" />
         <meta property="og:title" content="Studio Cynydd" />
-        <meta property="og:image" content="./images/og-image.jpg" />
+        <meta property="og:image" content="./images/og-image.jpeg" />
         <meta property="og:description" content="Boutique et information du Studio Cynydd, créations artisanales, fait-main français, designer graphique." />
       </Head>
       <Header type={type} herologo={herologo} slogan={slogan} />

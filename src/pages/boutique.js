@@ -11,7 +11,7 @@ const Shop = ({herologo}) => {
       <Paragraph>
       Bientôt vous pourrez commander sur notre site ! <br />
       D'ici là, retrouvez tous nos produits sur Etsy.</Paragraph>
-      <GoToLink href="https://www.etsy.com/fr/shop/Cynydd" rel>Aller sur notre boutique Etsy</GoToLink>
+      <GoToLink href="https://www.etsy.com/fr/shop/Cynydd" rel><span style={{fontSize: '.9rem'}}>Aller sur notre boutique Etsy</span></GoToLink>
     </section>
     </Layout>
   )

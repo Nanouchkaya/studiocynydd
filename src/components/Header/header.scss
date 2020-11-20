@@ -1,14 +1,14 @@
 header .img-landscape {
   width: 75%;
   display: block;
-  margin:auto;
+  margin: 0 auto $margin-mobile;
 }
 @media screen and (min-width: $bp-medium ){
   header {
     margin: $margin-screen 0;
     
     .img-landscape {
-      width: 35%;
+      width: 45%;
     }
   }
 }

@@ -48,10 +48,11 @@
 
 @media screen and (min-width: $bp-medium){
   .hero-logo {
-    width: 50%;
+    width: max(1000px, 50%);
   }
 
   .logo {
-    width: 25%
+    width: max(600px, 25%);
+    margin-bottom: calc(#{$margin-screen * -1});
   }
 }

@@ -35,6 +35,7 @@ export const Form = () => {
         }, 4000);
       } else {
         setError(true);
+        nProgress.done();
       }
     }).catch(error => {
       setError(true);

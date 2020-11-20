@@ -29,5 +29,9 @@ footer {
     .list-link, .list-link:visited {
       color: $c-white;
     }
+
+    .list-link:hover, .list-link:active, .list-link:focus {
+      color: $c-primary;
+    }
   }
 }

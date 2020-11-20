@@ -7,7 +7,7 @@ export const Logo = ({ alt, src }) => {
       <picture >
         <source srcSet={`${src}?fm=webp`} type="image/webp" />
         <source srcSet={`${src}?fm=jpeg`} type="image/jpeg" />
-        <img className='logo' src={imageSVGTrace.src} alt={alt} loading="lazy" />;
+        <img className='logo' src={imageSVGTrace.src} alt={alt} loading="lazy" />
       </picture>
     </div>
   )

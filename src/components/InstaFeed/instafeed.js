@@ -1,6 +1,5 @@
-import { H2, IconMini, Paragraph, SquareImg, Subtitle } from "@librairy/atoms";
+import { H2, Paragraph, SquareImg, Subtitle } from "@librairy/atoms";
 import { v4 as uuid } from 'uuid';
-import { socialNetworkLinks } from '@utils/site-constants';
 import { SocialNetworkIcons } from "@librairy/molecules";
 
 export const InstaFeed = ({ feed }) => {

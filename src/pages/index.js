@@ -18,7 +18,7 @@ const HomePage = (props) => {
       </Layout>
     </React.Fragment>
   )
-}
+};
 
 export default HomePage;
 

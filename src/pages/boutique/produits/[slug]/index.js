@@ -1,4 +1,4 @@
-import { getAssetById, getProductDetails, getProducts } from "@utils/contentful";
+import { getAssetById, getProductDetails, getProducts } from "@utils/";
 import { H1, Paragraph, Subtitle } from '@librairy/atoms';
 import { Layout} from '@components/index';
 

@@ -4,6 +4,7 @@ import { ShopCards } from "@librairy/molecules";
 import { v4 as uuid } from 'uuid';
 import { getAssetById, getCategories, getProducts } from "@utils/contentful";
 import { useState } from "react";
+import { useMediaQuery } from "@utils/hooks/media-query";
 
 const ShopPage = ({ herologo, categories, allProducts }) => {
   const [selectedCategorySlug, setSelectedCategorySlug] = useState('all-categories');
@@ -15,6 +16,8 @@ const ShopPage = ({ herologo, categories, allProducts }) => {
         return true;
   });
 
+  const isBreakpoint = useMediaQuery(768);
+
   return (
     <Layout title="Boutique" type="page-header" herologo={herologo}>
       <H1>La Boutique</H1>
@@ -23,30 +26,32 @@ const ShopPage = ({ herologo, categories, allProducts }) => {
       <section className="shop">
       <aside className="shop-navigation">
         <div className="shop-navigation-sections">
-          <details open>
+          <details open={!isBreakpoint}>
             <summary>
               Filtres de recherche
             </summary>
-            <article className="shop-navigation-section">
-              <H3>Rechercher un article</H3>
-              <input type="search" placeholder="mots clés" className="searchbar" />
-            </article>
-            <article className="shop-navigation-section">
-              <H3>Toutes les catégories</H3>
-              <ul>
-                <li key={uuid()}>
-                  <a onClick={() => setSelectedCategorySlug('all-categories')}>Tous les articles</a>
-                </li>
-                {
-                  categories.map(category =>
-                    <li key={uuid()}>
-                      <a onClick={() => setSelectedCategorySlug(category.slug)}>
-                      {category.title}
-                      </a>
-                    </li>)
-                }   
-              </ul>
-            </article>
+            <div>
+              <article className="shop-navigation-section">
+                <H3>Rechercher un article</H3>
+                <input type="search" placeholder="mots clés" className="searchbar" />
+              </article>
+              <article className="shop-navigation-section">
+                <H3>Toutes les catégories</H3>
+                <ul>
+                  <li key={uuid()}>
+                    <a onClick={() => setSelectedCategorySlug('all-categories')}>Tous les articles</a>
+                  </li>
+                  {
+                    categories.map(category =>
+                      <li key={uuid()}>
+                        <a onClick={() => setSelectedCategorySlug(category.slug)}>
+                        {category.title}
+                        </a>
+                      </li>)
+                  }   
+                </ul>
+              </article>
+            </div>
           </details>
         </div>
       </aside>

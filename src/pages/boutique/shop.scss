@@ -6,17 +6,13 @@
 
   &-navigation {
     background-color: #F9F6F5;    
-    position: sticky;
-    top: 0;
-    z-index: 2;
-  }
-
-  &-navigation {
-    //background-color: rgba($c-neutral, 0.3);
     padding: $padding-mobile;
+    position: sticky;
+    top: 0rem;
+    margin: 0 -0.5rem;
+    z-index: 2;
     
     .searchbar {
-      //width: 100%;
       padding: calc(#{$padding-mobile} / 1.5) $padding-mobile;
       color: $c-lightgrey;
       border: none;
@@ -41,12 +37,18 @@
 
     &-sections {
       width: 100%;
-  
-      summary {
-        text-transform: uppercase;
-        font-size: .9rem;
-        font-weight: 700;
-        color: $c-primary;
+
+      details {
+        &[open] summary ~ div {
+          animation: slideFromTop .3s ease-in-out;
+        }
+
+        summary {
+          text-transform: uppercase;
+          font-size: .9rem;
+          font-weight: 700;
+          color: $c-primary;
+        }
       }
     }
 
@@ -73,29 +75,7 @@
     padding: $padding-mobile 0;
   }
 
-  .cards {
-    display: flex;
-    flex-wrap: wrap;
-    padding: $padding-mobile;
-    justify-content: center;
-  }
   
-  .card {
-    position: relative;
-    padding: calc(#{$padding-mobile} / 2) calc(#{$padding-mobile} / 2) calc(#{$padding-mobile} * 2);
-    width: clamp(calc(220px - #{$padding-mobile}), calc(30% - #{$padding-mobile}), calc(400px - #{$padding-mobile}));
-
-    .button-secondary {
-      position: absolute;
-      bottom: 0;
-      width: calc(100% - #{$padding-mobile});
-      border-radius: 0 0 5px 5px;
-
-      &:hover {
-        background-color: $c-primary;
-      }
-    }
-  }
 }
 
 @media screen and (min-width: $bp-medium){
@@ -109,6 +89,7 @@
       flex: 1 25%;
       padding: $padding-screen;
       white-space: nowrap;
+      margin: unset;
 
       
       &-sections {
@@ -126,20 +107,6 @@
 
       &-section:last-of-type ul {
         overflow: unset;
-      }
-    }
-
-    .cards, p {
-      flex: 2 100%;
-      padding: $padding-screen;
-    }
-
-    .card {
-      padding: calc(#{$padding-screen} / 2) calc(#{$padding-screen} / 2) calc(#{$padding-screen} * 2);
-      width: clamp(calc(220px - #{$padding-screen}), calc(30% - #{$padding-screen}), calc(400px - #{$padding-screen}));
-
-      .button-secondary {
-        width: calc(100% - #{$padding-screen});
       }
     }
   }

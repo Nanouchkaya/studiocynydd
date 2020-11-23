@@ -40,8 +40,8 @@
 
 @media screen and (min-width: $bp-medium){
   .shop {
-    &-cards {
-      flex: 1 75%;
+    &-cards, p {
+      flex: 1 100%;
       padding: $padding-screen;
     }
 

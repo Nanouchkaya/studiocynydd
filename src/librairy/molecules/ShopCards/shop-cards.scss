@@ -4,23 +4,36 @@
     display: flex;
     flex-wrap: wrap;
     padding: $padding-mobile;
-    justify-content: center;
+    justify-content: space-around;
+    align-items: center;
   }
   
   &-card {
+    background-color: $c-neutral;
     position: relative;
-    padding: calc(#{$padding-mobile} / 2) calc(#{$padding-mobile} / 2) calc(#{$padding-mobile} * 2);
-    width: clamp(calc(220px - #{$padding-mobile}), calc(30% - #{$padding-mobile}), calc(400px - #{$padding-mobile}));
+    width: clamp(100px, 90%, 400px);
+    min-height: 200px;
+    margin-bottom: calc(#{$margin-mobile} / 2);
 
     .button-secondary {
       position: absolute;
+      z-index: 1;
       bottom: 0;
-      width: calc(100% - #{$padding-mobile});
-      border-radius: 0 0 5px 5px;
+      width: 100%;
+      border-radius: 0;
+      margin: 0;
 
       &:hover {
         background-color: $c-primary;
       }
+    }
+  }
+}
+
+@media screen and (min-width: $bp-small){
+  .shop {
+    &-card {
+      width: clamp(150px, 45%, 400px);
     }
   }
 }
@@ -33,12 +46,8 @@
     }
 
     &-card {
-      padding: calc(#{$padding-screen} / 2) calc(#{$padding-screen} / 2) calc(#{$padding-screen} * 2);
-      width: clamp(calc(220px - #{$padding-screen}), calc(30% - #{$padding-screen}), calc(400px - #{$padding-screen}));
-
-      .button-secondary {
-        width: calc(100% - #{$padding-screen});
-      }
+      width: clamp(200px, 30%, 450px);
+      margin-bottom: calc(#{$margin-screen} / 2);
     }
   }
 }

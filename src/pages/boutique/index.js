@@ -23,26 +23,31 @@ const ShopPage = ({ herologo, categories, allProducts }) => {
       <section className="shop">
       <aside className="shop-navigation">
         <div className="shop-navigation-sections">
-          <article className="shop-navigation-section">
-            <H3>Rechercher un article</H3>
-            <input type="search" placeholder="rechercher" className="searchbar" />
-          </article>
-          <article className="shop-navigation-section">
-            <H3>Toutes les catégories</H3>
-            <ul>
-              <li key={uuid()}>
-                <a onClick={() => setSelectedCategorySlug('all-categories')}>Voir tout</a>
-              </li>
-            {
-              categories.map(category =>
-              <li key={uuid()}>
-                <a onClick={() => setSelectedCategorySlug(category.slug)}>
-                  {category.title}
-                </a>
-              </li>)
-            }   
-            </ul>
-          </article>
+          <details open>
+            <summary>
+              Filtres de recherche
+            </summary>
+            <article className="shop-navigation-section">
+              <H3>Rechercher un article</H3>
+              <input type="search" placeholder="mots clés" className="searchbar" />
+            </article>
+            <article className="shop-navigation-section">
+              <H3>Toutes les catégories</H3>
+              <ul>
+                <li key={uuid()}>
+                  <a onClick={() => setSelectedCategorySlug('all-categories')}>Tous les articles</a>
+                </li>
+                {
+                  categories.map(category =>
+                    <li key={uuid()}>
+                      <a onClick={() => setSelectedCategorySlug(category.slug)}>
+                      {category.title}
+                      </a>
+                    </li>)
+                }   
+              </ul>
+            </article>
+          </details>
         </div>
       </aside>
       {

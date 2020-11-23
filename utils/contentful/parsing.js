@@ -40,7 +40,7 @@ export const parseProduct = ({ fields }) => {
     title: fields?.productName || '',
     slug: fields?.slug || '',
     price: fields?.price || null,
-    thumbnail: thumbnail || '',
+    thumbnail: thumbnail || 'http://images.ctfassets.net/ph8a1wv0u6fn/2sJxshKxY8ckJUEDxQ1DSu/baa18846a9a02b6a1ae5b92b1e85d54b/CAP_marraine_01.jpg?fit=thumb&fm=webp',
     isBestSeller: fields?.bestSeller || false,
     categories: fields?.categories || [],
   }

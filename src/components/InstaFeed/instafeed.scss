@@ -53,45 +53,7 @@
 
       img { filter: blur(1px); }
 
-      &:before {
-        content: 'Voir la publication';
-        position: absolute;
-        bottom: -1%;
-        display: block;
-        background-color: rgba($c-white, .9);
-        z-index: 1;
-        width: 102%;
-        left: -1%;
-        padding: calc(#{$padding-screen} / 2);
-        text-align: center;
-        font-family: $font-title;
-        text-transform: uppercase;
-        font-weight: 600;
-        font-size: .8rem;
-        color: $c-darkgrey;
-      }
-      
-      @media screen and (prefers-reduced-motion: no-preference) {
-        &:before {
-          transform: scaleY(0);
-          transition: $t-basic;
-        }
-
-        img { 
-          filter: blur(0px);
-          transition: $t-basic;
-        }
-
-        &:hover {
-          img {
-            filter: blur(1px);
-          }
-  
-          &:before {
-            transform: scaleY(1);
-          }
-        }
-      }
+      @include imageSeeMoreFlag($c-darkgrey, "Voir la publication");
     }
   }
 }

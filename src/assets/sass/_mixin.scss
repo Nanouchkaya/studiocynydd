@@ -1,0 +1,53 @@
+@mixin bottomLeftCorner($color) {
+  content: '';
+  position: absolute;
+  border-left: .5rem solid transparent;
+  border-right: .5rem solid transparent;
+  border-bottom: 0.5rem solid $color;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  bottom: -.35rem;
+  left: 0;
+}
+
+@mixin imageSeeMoreFlag($color, $message) {
+  &:before {
+    content: $message;
+    position: absolute;
+    bottom: 1rem;
+    display: block;
+    background-color: rgba($c-white, .9);
+    z-index: 2;
+    width: 102%;
+    left: -1%;
+    padding: calc(#{$padding-screen} / 3);
+    text-align: center;
+    font-family: $font-title;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: .8rem;
+    color: $color;
+  }
+
+  @media screen and (prefers-reduced-motion: no-preference) {
+    &:before {
+      transform: scaleY(0);
+      transition: $t-basic;
+    }
+
+    img { 
+      filter: blur(0px);
+      transition: $t-basic;
+    }
+
+    &:hover {
+      img {
+        filter: blur(1px);
+      }
+
+      &:before {
+        transform: scaleY(1);
+      }
+    }
+  }
+}

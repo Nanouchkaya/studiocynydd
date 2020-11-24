@@ -56,9 +56,10 @@ const ShopPage = ({ herologo, categories, allProducts }) => {
         </div>
       </aside>
       {
-        (selectedCategoryProducts.length <= 0) && <Paragraph label="alert">Aucun produit dans la catégorie sélectionnée.</Paragraph>
-      }
-      <ShopCards cardsData={selectedCategoryProducts} />
+        (selectedCategoryProducts.length <= 0)
+        ? <Paragraph label="alert">Aucun produit dans la catégorie sélectionnée.</Paragraph>
+        : <ShopCards cardsData={selectedCategoryProducts} />
+      }      
       </section>
     </Layout>
   )

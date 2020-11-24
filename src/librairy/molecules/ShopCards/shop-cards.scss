@@ -1,19 +1,78 @@
 /* BOUTIQUE */
 .shop {
+  .paragraph.alert {
+    flex: 1 100%;
+  }
+
   &-cards {
     display: flex;
     flex-wrap: wrap;
-    padding: $padding-mobile;
-    justify-content: space-around;
-    align-items: center;
+    padding: $padding-mobile 0;
+    justify-content: center;
   }
   
-  &-card {
-    background-color: $c-neutral;
+  &-card { 
     position: relative;
-    width: clamp(100px, 90%, 400px);
+    width: clamp(130px, calc(50% - calc(#{$margin-mobile} / 2)), 400px);
+    margin: 0 calc(#{$margin-mobile} / 4) calc(#{$margin-mobile} / 2);
     min-height: 200px;
-    margin-bottom: calc(#{$margin-mobile} / 2);
+    transition: all 0.2s ease-in-out;
+    
+    @include imageSeeMoreFlag($c-primary, "Plus d'infos");
+    &::before {
+      bottom: 4.5rem;
+    }
+
+    .img-thumbnail {
+      transition: all 0.2s ease-in-out;
+    }
+    &:hover .img-thumbnail {
+      filter: blur(1px) grayscale(30);
+      opacity: 0.8;
+    }
+
+    &-infos {
+      padding: calc(#{$padding-mobile} / 2) 0;
+      line-height: 1.4rem;
+    }
+    
+    &-infos--title {
+      display: block;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      max-width: 250px;
+      color: $c-darkgrey;
+      text-decoration: none;
+
+      &:hover {
+        color: $c-primary;
+      }
+    }
+
+    &-infos--price {
+      text-align: right;
+      width: 4rem;
+      font-weight: 800;
+      font-size: $font-medium;
+    }
+
+    &-infos--label {
+      background-color: $c-primary;
+      padding: .25rem .5rem;
+      font-size: $font-small;
+      text-transform: uppercase;
+      color: $c-white;
+      font-weight: 700;
+      position: absolute;
+      top: 0.5rem;
+      left: -.67rem;
+      z-index: 2;
+
+      &::before {
+        @include bottomLeftCorner($c-secondary)
+      }
+    }
 
     .button-secondary {
       position: absolute;
@@ -33,21 +92,26 @@
 @media screen and (min-width: $bp-small){
   .shop {
     &-card {
-      width: clamp(150px, 45%, 400px);
+      width: clamp(150px, calc(30% - calc(#{$padding-mobile} / 2)), 400px);
     }
   }
 }
 
 @media screen and (min-width: $bp-medium){
   .shop {
-    &-cards, p {
+    &-cards {
       flex: 1 100%;
-      padding: $padding-screen;
+      justify-content: flex-start;
+      padding: 0 $padding-screen;
     }
 
     &-card {
-      width: clamp(200px, 30%, 450px);
-      margin-bottom: calc(#{$margin-screen} / 2);
+      width: clamp(150px, calc(33% - calc(#{$margin-screen} / 2)), 500px);
+      margin: 0 calc(#{$margin-screen} / 4) calc(#{$margin-screen} / 2);
+      
+      &-infos--price {
+        font-size: $font-medium;
+      }
     }
   }
 }

@@ -57,21 +57,29 @@
       font-size: $font-medium;
     }
 
-    &-infos--label {
+    &-labels {
+      position: absolute;
+      top: 0.5rem;
+      left: -.67rem;
+      z-index: 1;
+    }
+
+    &-label {
       background-color: $c-primary;
       padding: .25rem .5rem;
       font-size: $font-small;
       text-transform: uppercase;
       color: $c-white;
       font-weight: 700;
-      position: absolute;
-      top: 0.5rem;
-      left: -.67rem;
-      z-index: 2;
+      
 
-      &::before {
-        @include bottomLeftCorner($c-secondary)
-      }
+      // &::before {
+      //   @include bottomLeftCorner($c-secondary)
+      // }
+
+      &.bestseller { background-color: $c-primary; }
+      &.promo { background-color: $c-darkgrey; }
+      &.newproduct { background-color: $c-tertiary; }
     }
 
     .button-secondary {

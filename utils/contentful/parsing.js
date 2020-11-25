@@ -30,19 +30,22 @@ export const parseCategory = ({ fields, sys }) => {
   }
 }
 
-export const parseProduct = ({ fields }) => {
-  let thumbnail
+export const parseProduct = ({ fields, sys }) => {
+  let thumbnail;
   if (fields?.images) {
     const firstImage = fields.images[0].fields.file.url;
     thumbnail = `${firstImage}?fit=thumb`
-  }
+  };
+
   return {
     title: fields?.productName || '',
     slug: fields?.slug || '',
     price: fields?.price || null,
-    thumbnail: thumbnail || 'http://images.ctfassets.net/ph8a1wv0u6fn/2sJxshKxY8ckJUEDxQ1DSu/baa18846a9a02b6a1ae5b92b1e85d54b/CAP_marraine_01.jpg?fit=thumb&fm=webp',
+    thumbnail: thumbnail || 'https://picsum.photos/500/500',
     isBestSeller: fields?.bestSeller || false,
     categories: fields?.categories || [],
+    isDiscount: fields.discount ? true : false,
+    createdAt: sys.createdAt,
   }
 }
 

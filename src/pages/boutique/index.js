@@ -51,6 +51,20 @@ const ShopPage = ({ herologo, categories, allProducts }) => {
                   }   
                 </ul>
               </article>
+              <article className="shop-navigation-section">
+                <H3>Labels</H3>
+                <ul className="shop-navigation-labels">
+                  <li className="shop-navigation-label">
+                    <label for="bestseller"><input id="bestseller" type="checkbox" className="searchbar" />Best Seller</label>
+                  </li>
+                  <li className="shop-navigation-label">
+                    <label for="promo"><input id="promo" type="checkbox" className="searchbar" />Promotion</label>
+                  </li>
+                  <li className="shop-navigation-label">
+                    <label for="newproduct"><input id="newproduct" type="checkbox" className="searchbar" />Nouveau</label>
+                  </li>
+                </ul>
+              </article>
             </div>
           </details>
         </div>

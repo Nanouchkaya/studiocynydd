@@ -58,14 +58,15 @@
     }
 
 
-    &-section li a {
+    &-link {
       line-height: 2rem;
       color: $c-darkgrey;
       text-decoration-color: transparent;
 
-      &:hover {
+      &:hover, &.active {
         text-decoration-color: $c-primary;
         cursor: pointer;
+        color: $c-primary;
       }
     }
 
@@ -89,7 +90,7 @@
     justify-content: center;
 
     &-navigation {
-      flex: 1 25%;
+      flex: 1 fit-content;
       padding: $padding-screen;
       white-space: nowrap;
       margin: unset;

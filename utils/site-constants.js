@@ -6,3 +6,9 @@ export const socialNetworkLinks = {
 };
 
 export const contactMail = 'contact@studiocynydd.fr';
+
+export const colors = {
+  cPrimary: '#8d0c22',
+  cSecondary : '#e2917a',
+  cTertiary: '#D39857',
+}

@@ -18,7 +18,7 @@
     min-height: 200px;
     transition: all 0.2s ease-in-out;
     
-    @include imageSeeMoreFlag($c-primary, "Plus d'infos");
+    @include imageSeeMoreFlag($c-darkgrey, "Plus d'infos");
     &::before {
       bottom: 4.5rem;
     }
@@ -27,7 +27,7 @@
       transition: all 0.2s ease-in-out;
     }
     &:hover .img-thumbnail {
-      filter: blur(1px) grayscale(30);
+      filter: blur(1px);
       opacity: 0.8;
     }
 

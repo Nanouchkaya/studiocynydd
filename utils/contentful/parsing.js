@@ -1,3 +1,5 @@
+import { productIsNew } from "@utils/helpers";
+
 /* PARSING export const  */
 export const parseEntries = (entries, cb) => {
   return entries?.items?.map(cb)
@@ -45,7 +47,7 @@ export const parseProduct = ({ fields, sys }) => {
     isBestSeller: fields?.bestSeller || false,
     categories: fields?.categories || [],
     isDiscount: fields.discount ? true : false,
-    createdAt: sys.createdAt,
+    isNew: productIsNew(sys.createdAt),
   }
 }
 

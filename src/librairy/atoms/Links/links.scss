@@ -118,11 +118,12 @@
 
   .button-secondary, .button-primary {
     padding: calc(#{$padding-screen} / 2.5) calc(#{$padding-screen} / 2);
-    margin: calc(#{$margin-screen} / 4) 0;
+    margin: calc(#{$margin-screen} / 4) auto;
   }
 
   .button-primary {
     text-transform: uppercase;
+    font-size: 1rem;
   }
   
   .list-link {

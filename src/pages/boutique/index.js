@@ -9,9 +9,11 @@ import { ShopCards } from "@librairy/molecules";
 import { H1, H2, H3, Paragraph, Subtitle } from "@librairy/atoms";
 import { BlockShopNews } from "@librairy/molecules/Blocks/ShopNews";
 import { getShopNews } from "@utils/contentful/shop";
+import { stringCleaner } from "@utils/helpers";
 
 const ShopPage = ({ herologo, categories, allProducts, shopnewsdata }) => {
   const [selectedCategorySlug, setSelectedCategorySlug] = useState('all-categories');
+  const [searchValue, setSearchValue] = useState('');
 
   const selectedCategoryProducts = allProducts.filter(product => {
     const productsInCategoryEqualToSlug = product.categories.filter(category => category.fields.slug == selectedCategorySlug);
@@ -20,14 +22,19 @@ const ShopPage = ({ herologo, categories, allProducts, shopnewsdata }) => {
         return true;
   });
 
+  const searchResults = allProducts.filter(product => {
+    const cleanedProductName = stringCleaner(product.name);
+    const cleanedSearchValue = stringCleaner(searchValue);
+    return cleanedProductName.includes(cleanedSearchValue)
+  });
   const isBreakpoint = useMediaQuery(768);
 
   return (
     <Layout title="Boutique" type="page-header" herologo={herologo}>
       <H1>La Boutique</H1>
       <Subtitle>Découvrez toutes les créations du Studio Cynydd</Subtitle>
+      <H2>Nouveautés</H2>
       <section className="shop-news">
-        <H2>Nouveautés</H2>
         <Carousel
           showStatus={false}
           showThumbs={false}
@@ -58,7 +65,13 @@ const ShopPage = ({ herologo, categories, allProducts, shopnewsdata }) => {
             <div>
               <article className="shop-navigation-section">
                 <H3>Rechercher un article</H3>
-                <input type="search" placeholder="mots clés" className="searchbar" />
+                <input
+                  type="search"
+                  placeholder="par mots-clés dans le nom"
+                  className="searchbar"
+                  value={searchValue}
+                  onChange={(e) => setSearchValue(e.target.value)}
+                />
               </article>
               <article className="shop-navigation-section">
                 <H3>Catégories</H3>
@@ -103,8 +116,8 @@ const ShopPage = ({ herologo, categories, allProducts, shopnewsdata }) => {
         </div>
       </aside>
       {
-        (selectedCategoryProducts.length <= 0)
-        ? <Paragraph label="alert">Aucun produit dans la catégorie sélectionnée.</Paragraph>
+        (searchResults.length >= 0)
+        ? <ShopCards cardsData={searchResults} />
         : <ShopCards cardsData={selectedCategoryProducts} />
       }      
       </section>
@@ -131,3 +144,5 @@ export async function getStaticProps() {
     }
   }
 }
+
+// <Paragraph label="alert">Aucun produit dans la catégorie sélectionnée.</Paragraph>

@@ -65,7 +65,7 @@ export const getShopNews = async () => {
     content_type: 'shopNews',
     order: 'fields.date'
   })
-console.log(shopNews)
+
   if (shopNews) return shopNews.items.map(news => parseShopNews(news))
 
   console.log('Error getting data for shop news content model')

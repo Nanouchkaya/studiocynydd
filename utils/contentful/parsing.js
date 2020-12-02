@@ -40,7 +40,7 @@ export const parseProduct = ({ fields, sys }) => {
   };
 
   return {
-    title: fields?.productName || '',
+    name: fields?.productName || '',
     slug: fields?.slug || '',
     price: fields?.price || null,
     thumbnail: thumbnail || 'https://picsum.photos/500/500',

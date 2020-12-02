@@ -26,6 +26,7 @@
 
       &::placeholder {
         color: $c-lightgrey;
+        font-size: .9rem;
       }
 
       &:focus, &:hover {
@@ -39,6 +40,7 @@
       width: 100%;
 
       details {
+        &[open]
         &[open] summary ~ div {
           animation: slideFromTop .3s ease-in-out;
         }

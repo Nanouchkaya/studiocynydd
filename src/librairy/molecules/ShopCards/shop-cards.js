@@ -14,11 +14,11 @@ export const ShopCards = ({ cardsData }) => {
         { currentCard.isBestSeller && <div className="shop-card-label bestseller">Best Seller</div> }
         </div>
           <Link href={currentCard.id ? `/boutique/categories/${currentCard.slug}` : `/boutique/produits/${currentCard.slug}`}>
-            <a><Thumbnail src={currentCard.thumbnail} alt={`Photo : ${currentCard.title}`} /></a>
+            <a><Thumbnail src={currentCard.thumbnail} alt={`Photo : ${currentCard.name}`} /></a>
           </Link>
           <div className="shop-card-infos">
             <Link href={currentCard.id ? `/boutique/categories/${currentCard.slug}` : `/boutique/produits/${currentCard.slug}`}>
-              <a className="shop-card-infos--title">{currentCard.title}</a>
+              <a className="shop-card-infos--title">{currentCard.name}</a>
             </Link>
             <span className='shop-card-infos--price'>{currentCard.price} € </span>
           </div>

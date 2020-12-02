@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useState } from "react";
 import { Carousel } from 'react-responsive-carousel';
 import { v4 as uuid } from 'uuid';
@@ -7,8 +8,9 @@ import { Layout } from "@components/index";
 import { ShopCards } from "@librairy/molecules";
 import { H1, H2, H3, Paragraph, Subtitle } from "@librairy/atoms";
 import { BlockShopNews } from "@librairy/molecules/Blocks/ShopNews";
+import { getShopNews } from "@utils/contentful/shop";
 
-const ShopPage = ({ herologo, categories, allProducts }) => {
+const ShopPage = ({ herologo, categories, allProducts, shopnewsdata }) => {
   const [selectedCategorySlug, setSelectedCategorySlug] = useState('all-categories');
 
   const selectedCategoryProducts = allProducts.filter(product => {
@@ -35,15 +37,11 @@ const ShopPage = ({ herologo, categories, allProducts }) => {
           infiniteLoop
         >
         {
-          data.map(slide => (
+          shopnewsdata.map(slide => (
           <BlockShopNews
+            {...slide}
             key={uuid()}
-            imageScreen={slide.image}
-            imageMobile={slide.imageMobile}
-            title={slide.title}
-            description={slide.description}
-            link={slide.link}
-            date={slide.date} />
+            />
           ))
         }
         </Carousel>
@@ -114,6 +112,13 @@ const ShopPage = ({ herologo, categories, allProducts }) => {
   )
 }
 
+ShopPage.propTypes = {
+  herologo: PropTypes.object,
+  categories: PropTypes.array,
+  allProducts: PropTypes.array,
+  shopnewsdata: PropTypes.array
+}
+
 export default ShopPage;
 
 export async function getStaticProps() {
@@ -122,41 +127,7 @@ export async function getStaticProps() {
       herologo: await getAssetById('13trf7K2jrx5M7fWiW5pbo'),
       categories: await getCategories(),
       allProducts: await getProducts(),
+      shopnewsdata: await getShopNews(),
     }
   }
 }
-
-const data = [
-  {
-    image: 'https://picsum.photos/1200/300?random=1',
-    imageMobile: 'https://picsum.photos/300/300?random=1',
-    description: 'Description de la nouveauté ici. Stock limité.',
-    link: "#product-url",
-    date: '2020-11-27',
-    title: 'Special noel !'
-  },
-  {
-    image: 'https://picsum.photos/1200/300?random=2',
-    imageMobile: 'https://picsum.photos/300/300?random=2',
-    description: 'Description de la nouveauté ici. Stock limité.',
-    link: "#product-url",
-    date: '2020-11-27',
-    title: 'Special noel !'
-  },
-  {
-    image: 'https://picsum.photos/1200/300?random=3',
-    imageMobile: 'https://picsum.photos/300/300?random=3',
-    description: 'Description de la nouveauté ici. Stock limité.',
-    link: "#product-url",
-    date: '2020-11-27',
-    title: 'Special noel !'
-  },
-  {
-    image: 'https://picsum.photos/1200/300?random=4',
-    imageMobile: 'https://picsum.photos/300/300?random=4',
-    description: 'Description de la nouveauté ici. Stock limité.',
-    link: "#product-url",
-    date: '2020-11-27',
-    title: 'Special noel !'
-  },
-]

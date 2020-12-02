@@ -7,5 +7,11 @@ module.exports = withPlugins([withTM], [
     mozjpeg: {
       quality: 80,
     },
-  }],
+  }]
 ]);
+
+module.exports = {
+  images: {
+    domains: ['images.ctfassets.net']
+  }
+};

@@ -20,11 +20,7 @@ export const Testimonials = ({ testimonials }) => (
         testimonials.map(testimonial => (
           <BlockTestimonial
             key={uuidv4()}
-            author={testimonial.author}
-            date={testimonial.date} 
-            comment={testimonial.comment}
-            image={testimonial.image}
-            isPro={testimonial.isPro}
+            {...testimonial}
           />
         ))
       }

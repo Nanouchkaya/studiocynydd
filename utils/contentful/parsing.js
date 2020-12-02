@@ -51,7 +51,7 @@ export const parseProduct = ({ fields, sys }) => {
   }
 }
 
-export const parseProductDetails = ({ fields }) => {
+export const parseProductDetails = ({ fields = {} }) => {
   return {
     name: fields?.productName || 'Sans nom',
     categories: fields?.categories || [],
@@ -66,7 +66,7 @@ export const parseProductDetails = ({ fields }) => {
   }
 }
 
-export const parseBlockContent = ({ fields }) => {
+export const parseBlockContent = ({ fields = {} }) => {
   return {
     name: fields?.name,
     content: fields?.content ?? null,
@@ -76,7 +76,7 @@ export const parseBlockContent = ({ fields }) => {
   }
 }
 
-export const parseTestimonial = ({fields = {}}) => {
+export const parseTestimonial = ({ fields = {} }) => {
   return {
     author: fields?.auteur,
     date: fields?.date,
@@ -86,7 +86,7 @@ export const parseTestimonial = ({fields = {}}) => {
   }
 }
 
-export const parseInstaFeed = ({fields = {}}) => {
+export const parseInstaFeed = ({ fields = {} }) => {
   return {
     number: fields?.number ?? null,
     link: fields?.link ?? null,
@@ -94,7 +94,7 @@ export const parseInstaFeed = ({fields = {}}) => {
   }
 }
 
-export const parseRetailer = ({fields = {}}) => {
+export const parseRetailer = ({ fields = {} }) => {
   return {
     company: fields?.company,
     siteURL: fields?.site || '',
@@ -104,5 +104,17 @@ export const parseRetailer = ({fields = {}}) => {
       latitude: fields?.gps.lat,
       longitude: fields.gps.lon
     }
+  }
+}
+
+export const parseShopNews = ({ fields = {} }) => {
+  return {
+    title: fields?.title,
+    description: fields?.description,
+    date: fields?.date,
+    imageScreen: fields?.imageScreen.fields.file,
+    imageMobile: fields?.imageMobile.fields.file,
+    link: fields?.link,
+    textLink: fields?.textLink
   }
 }

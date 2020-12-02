@@ -1,5 +1,5 @@
 import { getClient } from "./client"
-import { parseCategory, parseProduct, parseProductDetails } from "./parsing"
+import { parseCategory, parseProduct, parseProductDetails, parseShopNews } from "./parsing"
 
 export async function getCategories() {
   const allCategories = await getClient().getEntries({
@@ -58,4 +58,15 @@ export async function getProductDetails(slug) { // for product detailed page
   }
   
   console.log(`Error getting details for product ${slug}.`)
+}
+
+export const getShopNews = async () => {
+  const shopNews = await getClient().getEntries({
+    content_type: 'shopNews',
+    order: 'fields.date'
+  })
+console.log(shopNews)
+  if (shopNews) return shopNews.items.map(news => parseShopNews(news))
+
+  console.log('Error getting data for shop news content model')
 }

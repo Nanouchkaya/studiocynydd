@@ -4,13 +4,11 @@ export const LandscapeImg = ({ alt = '', src, position = '', customClass = '' })
   const float = position === 'center' ? '' : position;
   
   return (
-    <div className='picture-wrapper'>
-      <picture>
-        <source srcSet={`${src}?fm=webp`} type="image/webp" />
-        <source srcSet={`${src}?fm=jpeg`} type="image/jpeg" />
-        <img className={`img-landscape ${customClass}`} src={src} alt={alt} style={{margin: margin, float: float}} loading="lazy" />
-      </picture>
-    </div>
+    <picture className='picture-wrapper'>
+      <source srcSet={`${src}?fm=webp`} type="image/webp" />
+      <source srcSet={`${src}?fm=jpeg`} type="image/jpeg" />
+      <img className={`img-landscape ${customClass}`} src={src} alt={alt} style={{margin: margin, float: float}} loading="lazy" />
+    </picture>
   )
 }
 

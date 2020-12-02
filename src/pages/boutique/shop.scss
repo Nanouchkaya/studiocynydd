@@ -2,7 +2,7 @@
 .shop {
   display: flex;
   flex-direction: column;
-  margin: $margin-screen auto;
+  margin: calc(#{$margin-mobile} / 2) auto;
 
   &-navigation {
     background-color: #F9F6F5;    
@@ -88,6 +88,7 @@
     width: clamp(200px, 100%, 1200px);
     flex-direction: row;
     justify-content: center;
+    margin: calc(#{$margin-screen} / 2) auto;
 
     &-navigation {
       flex: 1 fit-content;

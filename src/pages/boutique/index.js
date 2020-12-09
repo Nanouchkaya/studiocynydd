@@ -4,7 +4,7 @@ import { Carousel } from 'react-responsive-carousel';
 import { v4 as uuid } from 'uuid';
 import { getAssetById, getCategories, getProducts } from "@utils/contentful";
 import { useMediaQuery } from "@utils/hooks/media-query";
-import { Layout } from "@components/index";
+import { Layout } from "@librairy/organisms/index";
 import { ShopCards } from "@librairy/molecules";
 import { H1, H2, H3, Paragraph, Subtitle } from "@librairy/atoms";
 import { BlockShopNews } from "@librairy/molecules/Blocks/ShopNews";

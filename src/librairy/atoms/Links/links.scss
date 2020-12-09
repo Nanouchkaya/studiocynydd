@@ -4,7 +4,7 @@
 }
 
 /* BUTTONS */
-.button-secondary, .button-primary {
+.button-secondary, .button-primary, .button-add {
   display: block;
   cursor: pointer;
   padding: calc(#{$padding-mobile} / 1.5) $padding-mobile;
@@ -24,7 +24,15 @@
   }
 }
 
-.button-primary {
+.button-add {
+  width: min(100%, 300px);
+  text-transform: uppercase;
+  &:hover {
+    background-color: $c-black;
+  }
+}
+
+.button-primary, .button-add {
   background-color: $c-primary;
 }
 

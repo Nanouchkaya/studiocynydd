@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { Header, Footer } from "@components/index"; 
+import { Header, Footer } from "@librairy/organisms/index"; 
 import Head from 'next/head';
 import { Anchors } from "@librairy/atoms/Links";
 

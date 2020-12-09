@@ -1,4 +1,4 @@
-import { Layout, FeaturedItems, Team, LastPrestation, Newsletter, Testimonials, InstaFeed} from '@components/index';
+import { Layout, FeaturedItems, Team, LastPrestation, Newsletter, Testimonials, InstaFeed} from '@librairy/organisms/index';
 import { H1, Subtitle, SVGTag } from '@librairy/atoms'
 import { getAssetById, getBlockContentBySection, getFeaturedItems, getInstaFeed, getLastPrestation, getTestimonials } from '@utils/contentful';
 import { globalAssetsID } from '@utils/site-constants';

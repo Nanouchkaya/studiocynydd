@@ -1,4 +1,4 @@
-import { Layout } from "@components/index";
+import { Layout } from "@librairy/organisms/index";
 import { H1, H3 } from "@librairy/atoms";
 
 export default function Custom404() {

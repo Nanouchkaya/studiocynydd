@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { Navbar } from "@components/Navbar";
+import { Navbar } from "@librairy/organisms/Navbar";
 import { HeroLogo, Logo, LandscapeImg } from '@librairy/atoms';
 
 export const Header = ({ type, herologo, slogan }) => {

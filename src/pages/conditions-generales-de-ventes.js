@@ -2,7 +2,7 @@ import { getAssetById, getPageContent } from '@utils/contentful';
 import { globalAssetsID } from '@utils/site-constants';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { options } from '@utils/rich-text-options';
-import { Layout } from "@components/Layout";
+import { Layout } from "@librairy/organisms/Layout";
 import { H1, Subtitle } from "@librairy/atoms";
 
 export const About = ({ herologo, title, description, body }) => {

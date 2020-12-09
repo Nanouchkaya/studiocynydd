@@ -52,14 +52,22 @@ export const parseProduct = ({ fields, sys }) => {
 }
 
 export const parseProductDetails = ({ fields = {} }) => {
+  let thumbnail;
+  if (fields?.images) {
+    const firstImage = fields.images[0].fields.file.url;
+    thumbnail = `${firstImage}?fit=thumb`
+  };
+
   return {
     name: fields?.productName || 'Sans nom',
+    slug: fields?.slug,
     categories: fields?.categories || [],
     price: fields?.price || null,
     variation: fields?.variation || {sys: {}, fields: {}},
     deliveryFee: fields?.deliveryFee || {sys: {}, fields: {}},
     images: fields?.images || [],
-    description: fields?.productDescription || 'Aucune description',
+    thumbnail: thumbnail,
+    description: fields?.description || 'Aucune description',
     tags: fields?.relatedProductTag || [],
     isCustomizable: fields?.personnalisation || false,
     isBestSeller: fields?.bestSeller || false,

@@ -1,0 +1,21 @@
+.gallery {
+  .carousel-root {
+    display: flex;
+    flex-direction: column;
+    max-width: 90vw;
+    margin: auto;
+  } 
+}
+
+@media screen and (min-width: $bp-medium){
+  .gallery {
+    width: clamp(400px, 50%,700px);
+
+    .carousel-root {
+      position: sticky;
+      top: $margin-screen;
+
+    }
+  }
+}
+

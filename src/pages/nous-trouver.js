@@ -2,7 +2,7 @@ import { getAssetById, getPageContent, getRetailers } from '@utils/contentful';
 import { globalAssetsID } from '@utils/site-constants';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { options } from '@utils/rich-text-options';
-import { Layout, Map } from "@components/index";
+import { Layout, Map } from "@librairy/organisms/index";
 import { H1, Subtitle } from "@librairy/atoms";
 
 const FindUs = ({ herologo, title, description, body, retailers, token }) => {

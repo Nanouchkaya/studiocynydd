@@ -7,7 +7,7 @@ import { options } from '@utils/rich-text-options';
 import { AddButton } from "@librairy/atoms/Links/buttons";
 
 const ShopCategoryPage = ({ herologo, product }) => {
-  console.log(product)
+  console.log(product.description)
   return (
     <Layout title="Boutique" type="page-header" herologo={herologo}>
       <H1>La Boutique</H1>
@@ -39,7 +39,7 @@ export async function getStaticPaths() {
   const products = await getProducts();
 
   const paths = products.map((product) => (
-    { params: { slug: product.slug } }
+    { params: { slug: 'carte-a-planter-marraine' } } //product.slug
   ))
 
   // We'll pre-render only these paths at build time.

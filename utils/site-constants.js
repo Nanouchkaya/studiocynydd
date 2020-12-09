@@ -12,3 +12,8 @@ export const colors = {
   cSecondary : '#e2917a',
   cTertiary: '#D39857',
 }
+
+export const globalAssetsID = {
+  herologo : '13trf7K2jrx5M7fWiW5pbo',
+  slogan: '11C7EGNuGzcvsJ0cC6no28'
+}

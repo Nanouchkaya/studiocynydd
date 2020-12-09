@@ -1,7 +1,7 @@
 import { BLOCKS } from "@contentful/rich-text-types"
 import { H2, H3, Paragraph, List, LandscapeImg } from '@librairy/atoms';
 import { BlockCollaboration, BlockRetailer } from '@librairy/molecules';
-import { v4 as uuid } from 'uuid';
+import { v4 } from 'uuid';
 
 export const options = {
   renderText: text => text.split('\n').flatMap((text, i) => [i > 0 && <br />, text]),
@@ -15,7 +15,7 @@ export const options = {
       },
     [BLOCKS.UL_LIST]: (node, children) => <List children={children} />,
     [BLOCKS.LIST_ITEM]: (node, children) => <li>{children}</li>,
-    [BLOCKS.PARAGRAPH]: (node, children) => <Paragraph key={uuid()}>{children}</Paragraph>,
+    [BLOCKS.PARAGRAPH]: (node, children) => <Paragraph uuid={v4()}>{children}</Paragraph>,
     [BLOCKS.EMBEDDED_ASSET]: 
       node => 
         <LandscapeImg        
@@ -25,7 +25,7 @@ export const options = {
     [BLOCKS.EMBEDDED_ENTRY]: node => {
       const fields = node.data.target.fields
       const contentType = node.data.target.sys.contentType.sys.id
-      //console.log(fields)
+      //console.log({fields})
       switch (contentType) {
         case 'collaboration':
           return <BlockCollaboration fields={fields} />

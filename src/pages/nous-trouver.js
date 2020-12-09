@@ -1,4 +1,5 @@
 import { getAssetById, getPageContent, getRetailers } from '@utils/contentful';
+import { globalAssetsID } from '@utils/site-constants';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { options } from '@utils/rich-text-options';
 import { Layout, Map } from "@components/index";
@@ -24,7 +25,7 @@ export async function getStaticProps() {
   const content = await getPageContent('1N4lovFHrIg0KTWktA65TQ');
   return {
     props: {
-      herologo: await getAssetById('13trf7K2jrx5M7fWiW5pbo'),
+      herologo: await getAssetById(globalAssetsID.herologo),
       title: content?.title ?? null,
       description: content?.description ?? null,
       body: content?.body ?? null,

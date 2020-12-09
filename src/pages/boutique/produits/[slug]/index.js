@@ -3,7 +3,7 @@ import { H1, Paragraph, Subtitle } from '@librairy/atoms';
 import { Layout} from '@components/index';
 
 const ShopCategoryPage = ({ herologo, product }) => {
-  console.log(product)
+  //console.log(product)
   return (
     <Layout title="Boutique" type="page-header" herologo={herologo}>
       <H1>{product.name}</H1>

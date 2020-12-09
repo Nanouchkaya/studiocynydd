@@ -1,4 +1,5 @@
 import { getAssetById, getPageContent } from '@utils/contentful';
+import { globalAssetsID } from '@utils/site-constants';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { options } from '@utils/rich-text-options';
 import { Layout } from "@components/Layout";
@@ -22,7 +23,7 @@ export async function getStaticProps() {
   const data = await getPageContent('1IsqRJpW34hcSL9VzNlaxp');
   return {
     props: {
-      herologo: await getAssetById('13trf7K2jrx5M7fWiW5pbo'),
+      herologo: await getAssetById(globalAssetsID.herologo),
       title: data?.title ?? null,
       description: data?.description ?? null,
       body: data?.body ?? null,

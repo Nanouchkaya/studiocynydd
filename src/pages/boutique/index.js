@@ -10,13 +10,16 @@ import { H1, H2, H3, Paragraph, Subtitle } from "@librairy/atoms";
 import { BlockShopNews } from "@librairy/molecules/Blocks/ShopNews";
 import { getShopNews } from "@utils/contentful/shop";
 import { stringCleaner } from "@utils/helpers";
+import { globalAssetsID } from '@utils/site-constants';
 
 const ShopPage = ({ herologo, categories, allProducts, shopnewsdata }) => {
+  const isBreakpoint = useMediaQuery(768);
   const [selectedCategorySlug, setSelectedCategorySlug] = useState('all-categories');
   const [searchValue, setSearchValue] = useState('');
 
   const selectedCategoryProducts = allProducts.filter(product => {
     const productsInCategoryEqualToSlug = product.categories.filter(category => category.fields.slug == selectedCategorySlug);
+
     if (selectedCategorySlug === 'all-categories'
       || productsInCategoryEqualToSlug.length > 0 )
         return true;
@@ -27,7 +30,16 @@ const ShopPage = ({ herologo, categories, allProducts, shopnewsdata }) => {
     const cleanedSearchValue = stringCleaner(searchValue);
     return cleanedProductName.includes(cleanedSearchValue)
   });
-  const isBreakpoint = useMediaQuery(768);
+
+  const handleSearchChange = (e) => {
+    setSelectedCategorySlug('all-categories');
+    setSearchValue(e.target.value);
+  }
+
+  const handleCategoryNavLinkClick = (slug) => {
+    setSearchValue('');
+    setSelectedCategorySlug(slug);
+  }
 
   return (
     <Layout title="Boutique" type="page-header" herologo={herologo}>
@@ -40,7 +52,7 @@ const ShopPage = ({ herologo, categories, allProducts, shopnewsdata }) => {
           showThumbs={false}
           showIndicators
           autoPlay
-          interval={5000}
+          interval={8000}
           infiniteLoop
         >
         {
@@ -70,7 +82,7 @@ const ShopPage = ({ herologo, categories, allProducts, shopnewsdata }) => {
                   placeholder="par mots-clés dans le nom"
                   className="searchbar"
                   value={searchValue}
-                  onChange={(e) => setSearchValue(e.target.value)}
+                  onChange={(e) => handleSearchChange(e)}
                 />
               </article>
               <article className="shop-navigation-section">
@@ -78,7 +90,7 @@ const ShopPage = ({ herologo, categories, allProducts, shopnewsdata }) => {
                 <ul>
                   <li key={uuid()}>
                     <a
-                      onClick={() => setSelectedCategorySlug('all-categories')}
+                      onClick={() => handleCategoryNavLinkClick('all-categories')}
                       className={(selectedCategorySlug === 'all-categories') ? 'shop-navigation-link active' : 'shop-navigation-link'}
                     >
                       Toutes les catégories
@@ -88,7 +100,7 @@ const ShopPage = ({ herologo, categories, allProducts, shopnewsdata }) => {
                     categories.map(category =>
                       <li key={uuid()}>
                         <a
-                          onClick={() => setSelectedCategorySlug(category.slug)}
+                          onClick={() => handleCategoryNavLinkClick(category.slug)}
                           className={(selectedCategorySlug === category.slug) ? 'shop-navigation-link active' : 'shop-navigation-link'}                          
                         >
                         {category.title}
@@ -97,7 +109,7 @@ const ShopPage = ({ herologo, categories, allProducts, shopnewsdata }) => {
                   }   
                 </ul>
               </article>
-              <article className="shop-navigation-section">
+              <article hidden className="shop-navigation-section">
                 <H3>Etiquettes</H3>
                 <ul className="shop-navigation-labels">
                   <li className="shop-navigation-label">
@@ -114,12 +126,12 @@ const ShopPage = ({ herologo, categories, allProducts, shopnewsdata }) => {
             </div>
           </details>
         </div>
-      </aside>
-      {
-        (searchResults.length >= 0)
-        ? <ShopCards cardsData={searchResults} />
-        : <ShopCards cardsData={selectedCategoryProducts} />
-      }      
+        </aside>
+        { (searchResults.length <= 0) && <Paragraph label="alert">Aucun résultat correspond aux mots-clés : {searchValue}.</Paragraph> }
+        { (selectedCategoryProducts.length <= 0) && <Paragraph label="alert">Aucun produit dans la catégorie sélectionnée.</Paragraph> }
+        { (selectedCategorySlug != 'all-categories') && <ShopCards cardsData={selectedCategoryProducts} /> }     
+        { (searchResults.length > 0 && selectedCategorySlug === 'all-categories') && <ShopCards cardsData={searchResults} /> }
+
       </section>
     </Layout>
   )
@@ -137,12 +149,10 @@ export default ShopPage;
 export async function getStaticProps() {
   return {
     props : {
-      herologo: await getAssetById('13trf7K2jrx5M7fWiW5pbo'),
+      herologo: await getAssetById(globalAssetsID.herologo),
       categories: await getCategories(),
       allProducts: await getProducts(),
       shopnewsdata: await getShopNews(),
     }
   }
 }
-
-// <Paragraph label="alert">Aucun produit dans la catégorie sélectionnée.</Paragraph>

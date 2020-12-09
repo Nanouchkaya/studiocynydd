@@ -1,6 +1,7 @@
 import { Layout, FeaturedItems, Team, LastPrestation, Newsletter, Testimonials, InstaFeed} from '@components/index';
 import { H1, Subtitle, SVGTag } from '@librairy/atoms'
 import { getAssetById, getBlockContentBySection, getFeaturedItems, getInstaFeed, getLastPrestation, getTestimonials } from '@utils/contentful';
+import { globalAssetsID } from '@utils/site-constants';
                                     
 const HomePage = (props) => {
   return(
@@ -25,8 +26,8 @@ export default HomePage;
 export async function getStaticProps() {
   return {
     props: {
-      herologo: await getAssetById('13trf7K2jrx5M7fWiW5pbo'),
-      slogan: await getAssetById('11C7EGNuGzcvsJ0cC6no28'),
+      herologo: await getAssetById(globalAssetsID.herologo),
+      slogan: await getAssetById(globalAssetsID.slogan),
       lastPrestation: await getLastPrestation(),
       featuredItems: await getFeaturedItems(),
       team: await getBlockContentBySection('team'),

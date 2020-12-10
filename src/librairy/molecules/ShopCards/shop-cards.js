@@ -1,4 +1,5 @@
 import { Thumbnail } from "@librairy/atoms";
+import { AddButtonSmall } from "@librairy/atoms/Links/buttons";
 import Link from "next/link";
 import { v4 as uuid } from 'uuid';
 
@@ -21,6 +22,7 @@ export const ShopCards = ({ cardsData }) => {
               <a className="shop-card-infos--title">{currentCard.name}</a>
             </Link>
             <span className='shop-card-infos--price'>{currentCard.price} € </span>
+            <AddButtonSmall {...currentCard} />
           </div>
         </article>
         ))

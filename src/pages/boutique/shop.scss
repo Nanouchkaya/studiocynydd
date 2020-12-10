@@ -9,14 +9,16 @@
 
   &-buy {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     font-weight: 700;
     
     &-price {
       font-size: $font-large;
-      text-align: right;
       margin: calc(#{$margin-mobile} / 2);
+      width: 10rem;
+
+      sup { font-size: $font-small;}
     }
 
     &-quantity {

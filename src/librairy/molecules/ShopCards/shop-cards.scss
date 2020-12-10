@@ -18,10 +18,10 @@
     min-height: 200px;
     transition: all 0.2s ease-in-out;
     
-    @include imageSeeMoreFlag($c-darkgrey, "Plus d'infos");
-    &::before {
-      bottom: 4.5rem;
-    }
+    // @include imageSeeMoreFlag($c-darkgrey, "Plus d'infos");
+    // &::before {
+    //   bottom: 4.5rem;
+    // }
 
     .img-thumbnail {
       transition: all 0.2s ease-in-out;
@@ -39,7 +39,7 @@
     &-infos--title {
       display: block;
       text-overflow: ellipsis;
-      white-space: nowrap;
+      font-size: .9rem;
       overflow: hidden;
       max-width: 250px;
       color: $c-darkgrey;
@@ -71,28 +71,10 @@
       text-transform: uppercase;
       color: $c-white;
       font-weight: 700;
-      
 
-      // &::before {
-      //   @include bottomLeftCorner($c-secondary)
-      // }
-
-      &.bestseller { background-color: $c-primary; }
+      &.bestseller { background-color: $c-secondary; }
       &.promo { background-color: $c-darkgrey; }
       &.newproduct { background-color: $c-tertiary; }
-    }
-
-    .button-secondary {
-      position: absolute;
-      z-index: 1;
-      bottom: 0;
-      width: 100%;
-      border-radius: 0;
-      margin: 0;
-
-      &:hover {
-        background-color: $c-primary;
-      }
     }
   }
 }
@@ -116,6 +98,11 @@
     &-card {
       width: clamp(150px, calc(33% - calc(#{$margin-screen} / 2)), 500px);
       margin: 0 calc(#{$margin-screen} / 4) calc(#{$margin-screen} / 2);
+
+      &-infos--title {
+        white-space: nowrap;
+        font-size: initial;
+      }
       
       &-infos--price {
         font-size: $font-medium;

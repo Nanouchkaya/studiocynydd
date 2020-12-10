@@ -4,7 +4,7 @@
 }
 
 /* BUTTONS */
-.button-secondary, .button-primary, .button-add {
+.button-secondary, .button-primary, .button-add, .button-add-small {
   display: block;
   cursor: pointer;
   padding: calc(#{$padding-mobile} / 1.5) $padding-mobile;
@@ -24,15 +24,23 @@
   }
 }
 
-.button-add {
+.button-add, .button-add-small {
   width: min(100%, 300px);
-  text-transform: uppercase;
-  &:hover {
-    background-color: $c-black;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  img {
+    display: inline;
+    filter: invert(100%) sepia(7%) saturate(261%) hue-rotate(272deg) brightness(116%) contrast(100%);
   }
 }
 
-.button-primary, .button-add {
+.button-add-small {
+  width: 100%;
+}
+
+.button-primary, .button-add, .button-add-small {
   background-color: $c-primary;
 }
 
@@ -129,7 +137,7 @@
     margin: calc(#{$margin-screen} / 4) auto;
   }
 
-  .button-primary {
+  .button-primary, .button-add, .button-add-small {
     text-transform: uppercase;
     font-size: 1rem;
   }

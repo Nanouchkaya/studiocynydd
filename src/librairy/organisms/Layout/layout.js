@@ -22,6 +22,11 @@ export const Layout = ({
         <meta name="keywords" content="Papeterie, Fait-main, boutique, Cynydd, Rennes, cadeaux" />
         <meta property="og:title" content="Studio Cynydd" />
         <meta property="og:description" content="Boutique et information du Studio Cynydd, créations artisanales, fait-main français, designer graphique." />
+
+        <link rel="preconnect" href="https://app.snipcart.com" />
+        <link rel="preconnect" href="https://cdn.snipcart.com" />
+        <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.0.26/default/snipcart.css" />
+        
       </Head>
       <Header type={type} herologo={herologo} slogan={slogan} />
       <main style={{position:'relative'}}>
@@ -29,6 +34,8 @@ export const Layout = ({
         <Anchors />
       </main>
       <Footer />
+      <script async src="https://cdn.snipcart.com/themes/v3.0.26/default/snipcart.js"></script>
+      <div id="snipcart" data-api-key={process.env.SNIPCART_PUBLIC_API_KEY} data-config-modal-style="side" hidden></div>
     </>
   )
 }

@@ -6,6 +6,7 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import { options } from '@utils/rich-text-options';
 import { AddButton } from "@librairy/atoms/Links/buttons";
 import { useState } from "react";
+import { v4 as uuid } from 'uuid';
 
 const ShopCategoryPage = ({ herologo, product }) => {
   //console.log({product})
@@ -22,7 +23,7 @@ const ShopCategoryPage = ({ herologo, product }) => {
 
           <div className="product-infos-container">
             <div className="product-buy">
-              <div className="product-buy-price">{product.price}€</div>
+              <div className="product-buy-price">{product.price * quantity}€ <sup>TTC</sup></div>
               <div className="product-buy-quantity">
               <a onClick={() => setQuantity(quantity + 1)}>+ </a> <a onClick={() => setQuantity(Math.max(0, quantity - 1))}> -</a>
               </div>
@@ -47,7 +48,7 @@ const ShopCategoryPage = ({ herologo, product }) => {
                       { hasOptions && (
                         <ul className="options-list">
                             {variation.fields.options.map(option => (
-                              <li className="options-list-item">{option}</li>
+                              <li key={uuid()} className="options-list-item">{option}</li>
                             ))}
                         </ul>
                         )
@@ -60,7 +61,7 @@ const ShopCategoryPage = ({ herologo, product }) => {
 
           <div className="product-tags">
             {
-              product.tags.map(tag => <span className="product-tags-item">{tag}</span>)
+              product.tags.map(tag => <span key={uuid()} className="product-tags-item">{tag}</span>)
             }
           </div>
           </div>

@@ -63,7 +63,7 @@ export const parseProductDetails = ({ fields = {} }) => {
     slug: fields?.slug,
     categories: fields?.categories || [],
     price: fields?.price || null,
-    variation: fields?.variation || {sys: {}, fields: {}},
+    variations: fields?.variations || {sys: {}, fields: {}},
     deliveryFee: fields?.deliveryFee || {sys: {}, fields: {}},
     images: fields?.images || [],
     thumbnail: thumbnail || 'https://picsum.photos/500/500',

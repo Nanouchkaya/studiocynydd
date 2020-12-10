@@ -1,4 +1,5 @@
 import { Carousel } from 'react-responsive-carousel';
+import { v4 as uuid } from 'uuid';
 
 export const Gallery = ({ images }) => {
   return (
@@ -11,6 +12,7 @@ export const Gallery = ({ images }) => {
       {
         images.map(image => (
           <img
+            key={uuid()}
             className='gallery-image-item'
             src={image.fields.file.url}
             alt={image.fields.file.fileName}

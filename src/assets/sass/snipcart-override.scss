@@ -1,0 +1,49 @@
+.snipcart {
+  color: $c-darkgrey;
+
+  &-modal, &-cart-button--secondary {
+    background-color: $c-neutral;
+    color: $c-darkgrey;
+  }
+
+  &-cart-header, .snipcart-cart__secondary-header {
+    color: $c-white;
+    background-color: $c-tertiary;
+    text-transform: uppercase;
+    font-weight: 800;
+  }
+
+  &__icon--blue-light path,
+  &-cart-header__icon.snipcart__icon--blue-dark.snipcart__icon path {
+    fill: $c-white;
+  }
+
+  &-cart__content {
+    background-color: transparent;
+  }
+  
+  &-item-line, &-cart__footer  {
+    background-color: $c-white;
+  }
+
+  &-discount-box__form {
+    border: 2px solid $c-tertiary;
+  }
+
+  &-discount-box__submit, &__actions--link {
+    color: $c-primary;
+    font-weight: 400;
+  }
+
+  &-cart-button--highlight {
+    background-image: none;
+    background-color: $c-primary;
+    border-radius: 5px;
+    text-transform: uppercase;
+  }
+
+  &__box--badge-highlight {
+    background: $c-secondary;
+    color: #fff;
+}
+}

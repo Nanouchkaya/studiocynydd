@@ -15,3 +15,11 @@ module.exports = {
     domains: ['images.ctfassets.net']
   }
 };
+
+const sitemap = require('nextjs-sitemap-generator');  
+sitemap({  
+  baseUrl: 'studiocynydd.fr',  
+  pagesDirectory: "src/pages",  
+  targetDirectory : 'public/',
+  ignoredPaths: ["[fallback]"],
+});

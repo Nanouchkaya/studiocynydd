@@ -60,6 +60,7 @@ const ShopCategoryPage = ({ herologo, product }) => {
             </details>
 
           <div className="product-tags">
+          Tags :
             {
               product.tags.map(tag => <span key={uuid()} className="product-tags-item">{tag}</span>)
             }

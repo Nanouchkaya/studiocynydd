@@ -35,8 +35,7 @@
 
 
   &-description, &-variations {
-    background-color: rgba($c-neutral, 0.3);
-    border: 1px solid $c-neutral;
+    background-color: rgba($c-neutral, .3);
     padding: calc(#{$padding-mobile} / 2);
     margin: calc(#{$margin-mobile} / 2) 0;
 
@@ -62,17 +61,12 @@
     }
   
   &-tags {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-
+    color: $c-secondary;
+    padding: calc(#{$padding-mobile} / 2);
+    
     &-item {
-      background-color: rgba($c-tertiary, 0.3);
-      border: 1px solid $c-white;
-      padding: .3rem .7rem;
-      margin: .3rem;
-      border-radius: 25px;
+      margin: 0 .5rem;
+      border-radius: 10px;
     }
   }
 

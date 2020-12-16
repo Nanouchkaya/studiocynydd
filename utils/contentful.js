@@ -43,6 +43,21 @@ export async function getPageContent(entryId) {
   console.error(`Error getting page content of id ${entry}.`)
 }
 
+export async function getAdvertisements() {
+  const now = new Date()
+  const entries = await getClient().getEntries({
+    content_type: 'advertisement',
+    'fields.startDate[lte]': now,
+    'fields.endDate[gte]': now,
+    'select': 'fields.message'
+  })
+
+  const advertisements = entries.items.map(entry => entry.fields.message)
+  if (advertisements) return advertisements
+
+  console.log(`Error getting advertisements.`)
+}
+
 export async function getBlockContentBySection(indexSection) {
   const entries = await getClient().getEntries({
     content_type: 'blockContent',

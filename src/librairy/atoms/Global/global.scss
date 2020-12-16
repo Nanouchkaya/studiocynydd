@@ -1,0 +1,19 @@
+.advertisement-message {
+  position: relative;
+  top: 0;
+  text-align: center;
+  background-color: $c-neutral;
+  color: $c-primary;
+  padding: 1rem;
+  margin-bottom: 3px;
+
+  a {
+    margin-left: .5rem;
+  }
+}
+
+@media screen and (min-width: $bp-medium) {
+  .advertisement-message {
+    top: calc(#{$margin-screen} / -3)
+  }
+}

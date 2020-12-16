@@ -10,7 +10,7 @@ export const InstaFeed = ({ feed }) => {
       <Paragraph>
         <SocialNetworkIcons />
       </Paragraph>
-      <div className='feed-container'>
+      <div id="feed-container">
         {
           feed.map(post => (
             <div key={uuid()} className="instafeed-image">

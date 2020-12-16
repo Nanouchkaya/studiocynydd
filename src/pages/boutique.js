@@ -1,10 +1,10 @@
 import { Layout } from "@components/index";
 import { GoToLink, H1, Paragraph, Subtitle } from "@librairy/atoms";
-import { getAssetById } from "@utils/contentful";
+import { getAdvertisements, getAssetById } from "@utils/contentful";
 
-const Shop = ({herologo}) => {
+const Shop = ({ herologo, advertisements }) => {
   return (
-    <Layout title="Boutique" type="page-header" herologo={herologo}>
+    <Layout title="Boutique" type="page-header" herologo={herologo} advertisements={advertisements} >
     <H1>La Boutique</H1>
     <Subtitle>A venir</Subtitle>
     <section id="about">
@@ -23,6 +23,7 @@ export async function getStaticProps() {
   return {
     props : {
       herologo: await getAssetById('13trf7K2jrx5M7fWiW5pbo'),
+      advertisements: await getAdvertisements(),
     }
   }
 }

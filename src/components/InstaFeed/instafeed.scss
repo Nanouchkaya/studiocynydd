@@ -15,23 +15,21 @@
     filter: invert(9%) sepia(90%) saturate(3830%) hue-rotate(348deg) brightness(98%) contrast(102%);
   }
 
-  .feed-container {
+  #feed-container, div:first-of-type {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-
-    a:after {
-      content: '' // hide external link icon
-    }
-
-    img {
-      flex: 1;
-    }
+    width: 100%!important;
   }
   
   &-image {
     width: calc(50% - calc(#{$margin-mobile} / 4));
     margin-bottom: calc(#{$margin-mobile} / 2);
+    flex: 1;
+
+    a:after {
+      content: '' // hide external link icon
+    }
   }
 }
 
@@ -40,22 +38,22 @@
    width: 80%;
    margin: $margin-screen auto;
 
-   a.icon-mini img {
-    min-width: 3.5rem;
-  }
+    a.icon-mini img {
+      min-width: 3.5rem;
+    }
     
     &-image {
       width: calc(calc(100% / 4) - #{$margin-screen} / 2); 
       margin: calc(#{$margin-screen / 4});
       position: relative;
     }
-
+  
     &-image a {
       position: relative;
       display: block;
-
+  
       img { filter: blur(1px); }
-
+  
       &:before {
         content: 'Voir la publication';
         position: absolute;
@@ -68,7 +66,7 @@
         padding: calc(#{$padding-screen} / 2);
         text-align: center;
         font-family: $font-title;
-        text-transform: uppercase;
+        
         font-weight: 600;
         font-size: .8rem;
         color: $c-darkgrey;
@@ -79,12 +77,12 @@
           transform: scaleY(0);
           transition: $t-basic;
         }
-
+  
         img { 
           filter: blur(0px);
           transition: $t-basic;
         }
-
+  
         &:hover {
           img {
             filter: blur(1px);
@@ -96,5 +94,6 @@
         }
       }
     }
+    
   }
 }

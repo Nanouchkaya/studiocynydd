@@ -8,7 +8,8 @@ export const Layout = ({
   title = 'Papeterie pleine de vie',
   type = "index-header",
   herologo,
-  slogan
+  slogan,
+  advertisements
 }) => {
   return (
     <>
@@ -24,7 +25,7 @@ export const Layout = ({
         <meta property="og:description" content="Boutique et information du Studio Cynydd, créations artisanales, fait-main français, designer graphique." />
         <meta property="og:image" content="/images/og-image.jpg" />
       </Head>
-      <Header type={type} herologo={herologo} slogan={slogan} />
+      <Header type={type} herologo={herologo} slogan={slogan} advertisements={advertisements} />
       <main style={{position:'relative'}}>
         {children}
         <Anchors />

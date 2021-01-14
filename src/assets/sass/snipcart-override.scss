@@ -26,6 +26,14 @@
     background-color: $c-white;
   }
 
+  &-discount-box, &-discount-box__button {
+    background-color: $c-white;
+    text-transform: uppercase;
+    color: $c-primary;
+    border: none;
+    border-radius: 5px;
+  }
+
   &-discount-box__form {
     border: 2px solid $c-tertiary;
   }

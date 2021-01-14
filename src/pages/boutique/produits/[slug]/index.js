@@ -1,5 +1,5 @@
 import { getAssetById, getProductDetails, getProducts } from "@utils/contentful";
-import { H1, H2, H3, H4, Input, Paragraph, Subtitle } from '@librairy/atoms';
+import { H1, H3, Paragraph, Subtitle } from '@librairy/atoms';
 import { Layout} from '@librairy/organisms/index';
 import { Gallery } from "@organisms/Gallery";
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
@@ -7,13 +7,26 @@ import { options } from '@utils/rich-text-options';
 import { AddButton } from "@librairy/atoms/Links/buttons";
 import { useState } from "react";
 import { v4 as uuid } from 'uuid';
+import { CardSummary } from "@librairy/molecules/CardSummary";
 
 const ShopCategoryPage = ({ herologo, product }) => {
-  //console.log({product})
   const [quantity, setQuantity] = useState(1);
+  const arrayOfCustomDataItem = product.variations.map((variation, index) => {
+    const name = `data-item-custom${index + 1}-name`
+    const options = `data-item-custom${index + 1}-options`
+    const required = `data-item-custom${index + 1}-required`
+      return {
+        [name]: variation.fields.name,
+        [options]: variation.fields.dataOptions,
+        [required]: "true",
+      }
+  })
+
+  let customDataItem = {}
 
   return (
     <Layout title="Boutique" type="page-header" herologo={herologo}>
+    <CardSummary />
       <H1>La Boutique</H1>
       <Subtitle>{product.name}</Subtitle>
       <section className="product">
@@ -28,8 +41,21 @@ const ShopCategoryPage = ({ herologo, product }) => {
               <a onClick={() => setQuantity(quantity + 1)}>+ </a> <a onClick={() => setQuantity(Math.max(0, quantity - 1))}> -</a>
               </div>
             </div>
+
+            {
+              arrayOfCustomDataItem.forEach(element => {
+                customDataItem = {...customDataItem, ...element}
+              })
+            }
             
-            <AddButton {...product} quantity={quantity} />
+            <AddButton
+              quantity={quantity}
+              slug={product.slug}
+              name={product.name}
+              price={product.price}
+              thumbnail={product.thumbnail}
+              {...customDataItem}
+            />
 
             <details className="product-description">
               <summary>Détails de l'article</summary>
@@ -43,7 +69,7 @@ const ShopCategoryPage = ({ herologo, product }) => {
                 product.variations.map(variation => {
                   const hasOptions = variation.fields?.options?.length > 0;
                   return (
-                    <div className="product-variations-item">
+                    <div key={uuid()} className="product-variations-item">
                       <span className="product-variations-item-name">{variation.fields.name}</span>
                       { hasOptions && (
                         <ul className="options-list">
@@ -52,7 +78,8 @@ const ShopCategoryPage = ({ herologo, product }) => {
                             ))}
                         </ul>
                         )
-                      }          
+                      }
+                      { !hasOptions && <Paragraph>Aucune option disponible pour cet article.</Paragraph> }         
                     </div>
                   )
                 })
@@ -60,7 +87,6 @@ const ShopCategoryPage = ({ herologo, product }) => {
             </details>
 
           <div className="product-tags">
-          Tags :
             {
               product.tags.map(tag => <span key={uuid()} className="product-tags-item">{tag}</span>)
             }

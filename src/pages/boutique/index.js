@@ -11,6 +11,7 @@ import { BlockShopNews } from "@librairy/molecules/Blocks/ShopNews";
 import { getShopNews } from "@utils/contentful/shop";
 import { stringCleaner } from "@utils/helpers";
 import { globalAssetsID } from '@utils/site-constants';
+import { CardSummary } from "@librairy/molecules/CardSummary";
 
 const ShopPage = ({ herologo, categories, allProducts, shopnewsdata }) => {
   const isBreakpoint = useMediaQuery(768);
@@ -43,6 +44,7 @@ const ShopPage = ({ herologo, categories, allProducts, shopnewsdata }) => {
 
   return (
     <Layout title="Boutique" type="page-header" herologo={herologo}>
+    <CardSummary />
       <H1>La Boutique</H1>
       <Subtitle>Découvrez toutes les créations du Studio Cynydd</Subtitle>
       <H2>Nouveautés</H2>

@@ -1,6 +1,6 @@
-import { NavLink, ListLink, IconMini } from '@librairy/atoms';
+import { NavLink, ListLink } from '@librairy/atoms';
 import { v4 as uuidv4 } from 'uuid';
-import { socialNetworkLinks, contactMail } from '@utils/site-constants';
+import { contactMail } from '@utils/site-constants';
 import { SocialNetworkIcons } from '@librairy/molecules';
 
 export const Navbar = () => {

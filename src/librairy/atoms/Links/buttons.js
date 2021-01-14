@@ -18,20 +18,20 @@ ButtonSecondary.propTypes = {
   children: PropTypes.string
 }
 
-export const AddButton = ({ quantity, ...props }) => {
+export const AddButton = ({ quantity, slug, name, price, thumbnail, ...customDataItem }) => { 
+  //console.log(customDataItem)
   return (
     <button
       className="snipcart-add-item button-add"
-      data-item-id={`item-id-${props.slug}`}
-      data-item-name={props.name}
-      data-item-price={props.price}
-      data-item-url={`http://studiocynydd.fr/boutique/produits/${props.slug}`}
-      data-item-image={props.thumbnail}
-      data-item-categories="cat1, cat2, cat3"
-      data-item-custom1-required="true"
-      data-item-quantity={quantity}      
-      >
-          Ajouter au panier <span><img src='/images/shopping.png' alt='icon-cart' />{quantity}</span>
+      data-item-id={`item-id-${slug}`}
+      data-item-name={name}
+      data-item-price={price}
+      data-item-url={`http://studiocynydd.fr/boutique/produits/${slug}`}
+      data-item-image={thumbnail}
+      data-item-quantity={quantity}
+      {...customDataItem}
+      >      
+        Ajouter au panier <span><img src='/images/shopping.png' alt='icon-cart' />{quantity}</span>
     </button>
   )
 };

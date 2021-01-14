@@ -10,7 +10,7 @@ export const options = {
     [BLOCKS.HEADING_3]: (node, children) => {
       const h3Value = node.content[0].value.trim();
       if (h3Value.includes("livraison"))
-        return <H3 id="la-livraison">{children}</H3>
+        return <H3 id="la-livraison">{children}</H3> // add anchor for quick link from footer & menu burger
       else return <H3>{children}</H3>
       },
     [BLOCKS.UL_LIST]: (node, children) => <List children={children} />,

@@ -44,6 +44,7 @@ export const parseProduct = ({ fields, sys }) => {
     slug: fields?.slug || '',
     price: fields?.price || null,
     thumbnail: thumbnail || 'https://picsum.photos/500/500',
+    variations: fields?.variations || [{sys: {}, fields: {}}],
     isBestSeller: fields?.bestSeller || false,
     categories: fields?.categories || [],
     isDiscount: fields.discount ? true : false,

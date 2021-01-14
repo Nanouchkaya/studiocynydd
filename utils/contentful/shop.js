@@ -16,7 +16,7 @@ export async function getCategories() {
 export async function getProducts() { // only general informations for cards view
   const allProducts = await getClient().getEntries({
     content_type: 'product',
-    select: 'sys.createdAt,fields.slug,fields.productName,fields.price,fields.images,fields.bestSeller,fields.categories,fields.discount',
+    select: 'sys.createdAt,fields.slug,fields.productName,fields.price,fields.images,fields.bestSeller,fields.categories,fields.discount,fields.variations',
   })
 
   if (allProducts) return allProducts.items.map(product => parseProduct(product))

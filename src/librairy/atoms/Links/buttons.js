@@ -36,15 +36,16 @@ export const AddButton = ({ quantity, slug, name, price, thumbnail, ...customDat
   )
 };
 
-export const AddButtonSmall = ({ quantity, ...props }) => {
+export const AddButtonSmall = ({ slug, name, price, thumbnail, ...customDataItem }) => {
   return (
     <button
       className="snipcart-add-item button-add-small"
-      data-item-id={`item-id-${props.slug}`}
-      data-item-name={props.name}
-      data-item-price={props.price}
-      data-item-url={`http://studiocynydd.fr/boutique/produits/${props.slug}`}
-      data-item-image={props.thumbnail}      
+      data-item-id={`item-id-${slug}`}
+      data-item-name={name}
+      data-item-price={price}
+      data-item-url={`http://studiocynydd.fr/boutique/produits/${slug}`}
+      data-item-image={thumbnail} 
+      {...customDataItem}     
       >
           Ajouter <img src='/images/shopping.png' alt='icon-cart' />
     </button>

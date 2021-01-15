@@ -19,7 +19,6 @@ export const BlockShopNews = ({ title, imageScreen, imageMobile, description, li
       <span className="shop-news-block-desc--title">{title}</span>
       <p>{description}</p>
       { link && <ButtonPrimary href={link}>{textLink}</ButtonPrimary> }
-      <time>Le {format(new Date(date), 'dd/mm/yyyy' ,{ locale: fr } )}</time>
     </div>
     </div>
   )

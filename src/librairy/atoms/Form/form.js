@@ -1,6 +1,6 @@
 import { useForm, FormProvider } from "react-hook-form";
 import { useState } from 'react';
-import { Paragraph, Input, Textarea, ButtonPrimary } from '@librairy/atoms';
+import { Paragraph, Input, Textarea, FormButton } from '@librairy/atoms';
 import nProgress from 'nprogress';
 import { H2 } from "../Texts";
 
@@ -96,7 +96,7 @@ export const Form = () => {
             Studio Cynydd traite les données recueillies pour répondre au mieux à vos questions et ne les partage à aucun tiers. Pour en savoir plus sur la gestion de vos données personnelles et pour exercer vos droits, reportez-vous aux règles de confidentialité du site indiquées à la page <a href="/mentions-legales">mentions légales</a>.
           </Paragraph>
         </div>
-        <ButtonPrimary type="submit">{buttonText}</ButtonPrimary>
+        <FormButton type="submit">{buttonText}</FormButton>
         {
           error && <Paragraph label='alert'>Le formulaire n'a pas pu être envoyé, vérifiez que tous les champs soient renseignés, sinon contactez-nous directement à l'adresse contact@studiocynydd.fr.</Paragraph>
         }

@@ -54,12 +54,28 @@ const ShopCategoryPage = ({ herologo, product }) => {
               name={product.name}
               price={product.price}
               thumbnail={product.thumbnail}
+              weight={product.weight}
               {...customDataItem}
             />
 
             <details className="product-description">
               <summary>Détails de l'article</summary>
               {documentToReactComponents(product.description, options)}
+            </details>
+
+            <details className="product-faq">
+              <summary>F.A.Q.</summary>
+              {documentToReactComponents(product.faq, options)}
+            </details>
+
+            <details className="product-shipping">
+              <summary>Livraison & retour</summary>
+              {product.shippingMethods.map(shipping => (
+                <div className="product-shipping-item">
+                <h4 className="product-shipping-item-name">{shipping.fields.name}</h4>
+                  {documentToReactComponents(shipping.fields.description, options)}
+                </div>
+              ))}
             </details>
 
             <details className="product-variations">

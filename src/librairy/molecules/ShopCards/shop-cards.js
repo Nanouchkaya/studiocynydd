@@ -45,6 +45,7 @@ export const ShopCards = ({ cardsData }) => {
               name={currentCard.name}
               price={currentCard.price}
               thumbnail={currentCard.thumbnail}
+              weight={currentCard.weight}
               {...customDataItem}
             />
           </div>

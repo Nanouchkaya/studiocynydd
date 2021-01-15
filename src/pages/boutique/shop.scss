@@ -157,8 +157,11 @@
     }
   }
 
+  &-faq[open] summary, &-shipping[open] summary {
+    margin-bottom: calc(#{$padding-mobile} / 2);
+  }
 
-  &-description, &-variations {
+  &-description, &-variations, &-faq, &-shipping {
     background-color: rgba($c-neutral, .3);
     padding: calc(#{$padding-mobile} / 2);
     margin: calc(#{$margin-mobile} / 2) 0;
@@ -212,9 +215,15 @@
       }
     }
 
-    &-description, &-variations {
+    &-faq[open] summary, &-shipping[open] summary {
+      margin-bottom: calc(#{$padding-screen} / 2);
+    }
+  
+
+    &-description, &-variations, &-faq, &-shipping {
       padding: calc(#{$padding-screen} / 2);
       margin: calc(#{$margin-screen} / 2) 0;
+  
     }
 
     &-infos-container {

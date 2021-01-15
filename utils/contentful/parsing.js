@@ -25,8 +25,7 @@ export const parseCategory = ({ fields, sys }) => {
     title: fields?.title || null,
     slug: fields?.slug,
     featuredItem: fields?.featuredItem || false,
-    image: fields?.icon?.fields.file || '',
-    thumbnail: `${fields?.icon?.fields.file.url}?fit=thumb` || '',
+    image: fields?.icon?.fields.file || {url: 'https://picsum.photos/680/540'},
     description: fields?.description || '',
     url: fields?.url || '',
   }

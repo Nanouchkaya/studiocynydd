@@ -10,6 +10,10 @@
     padding: $padding-mobile 0;
     justify-content: center;
   }
+
+  .cards-categories {
+    justify-content: space-between;
+  }
   
   &-card { 
     position: relative;
@@ -96,7 +100,7 @@
     }
 
     &-card {
-      width: clamp(150px, calc(33% - calc(#{$margin-screen} / 2)), 500px);
+      width: clamp(170px, calc(33% - calc(#{$margin-screen} / 2)), 500px);
       margin: 0 calc(#{$margin-screen} / 4) calc(#{$margin-screen} / 2);
 
       &-infos--title {
@@ -106,6 +110,20 @@
       
       &-infos--price {
         font-size: $font-medium;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $bp-large){
+  .shop {
+    &-card {
+      width: clamp(175px, calc(25% - calc(#{$margin-screen} / 2)), 400px);
+      margin: 0 calc(#{$margin-screen} / 4) calc(#{$margin-screen} / 2);
+
+      &-infos--title {
+        white-space: nowrap;
+        font-size: initial;
       }
     }
   }

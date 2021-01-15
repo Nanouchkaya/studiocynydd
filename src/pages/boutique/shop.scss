@@ -1,3 +1,126 @@
+/* BOUTIQUE */
+.shop {
+  display: flex;
+  flex-direction: column;
+  margin: calc(#{$margin-mobile} / 2) auto;
+
+  &-navigation {
+    background-color: #F9F6F5;    
+    padding: $padding-mobile;
+    position: sticky;
+    top: 0rem;
+    margin: 0 -0.5rem;
+    z-index: 2;
+    
+    .searchbar {
+      padding: calc(#{$padding-mobile} / 1.5) $padding-mobile;
+      color: $c-lightgrey;
+      border: none;
+      border-radius: 5px 5px 0 0;
+      border-bottom: 2px solid $c-secondary;
+      background-color: $c-white;
+
+      font-size: 1em;
+      font-family: $font-text;
+      transition: $t-basic;
+
+      &::placeholder {
+        color: $c-lightgrey;
+        font-size: .9rem;
+      }
+
+      &:focus, &:hover {
+        border: none;
+        border-bottom: 2px solid $c-primary;
+        outline: $c-primary;      
+      }
+    }
+
+    &-sections {
+      width: 100%;
+
+      details {
+        &[open]
+        &[open] summary ~ div {
+          animation: slideFromTop .3s ease-in-out;
+        }
+
+        summary {
+          text-transform: uppercase;
+          font-size: .9rem;
+          font-weight: 700;
+          color: $c-primary;
+        }
+      }
+    }
+
+    &-section:nth-of-type(2) ul {
+      max-height: 25vh;
+      overflow-y: scroll;
+    }
+
+
+    &-link {
+      line-height: 2rem;
+      color: $c-darkgrey;
+      text-decoration-color: transparent;
+
+      &:hover, &.active {
+        text-decoration-color: $c-primary;
+        cursor: pointer;
+        color: $c-primary;
+      }
+    }
+
+    &-label {
+      line-height: 2rem;
+    }
+  }
+
+  h3 {
+    font-size: $font-medium;
+    padding: $padding-mobile 0;
+  }
+
+  
+}
+
+@media screen and (min-width: $bp-medium){
+  .shop { 
+    width: clamp(200px, 100%, 1600px);
+    flex-direction: row;
+    justify-content: center;
+    margin: calc(#{$margin-screen} / 2) auto;
+
+    &-navigation {
+      flex: 1 fit-content;
+      padding: $padding-screen;
+      white-space: nowrap;
+      margin: unset;
+
+      
+      &-sections {
+        position: sticky;
+        top: $margin-screen;
+
+        summary {
+          display: none;
+        }
+      }
+
+      &-section {
+        padding: 0 0 $padding-screen 0;
+      }
+
+      &-section:nth-of-type(2) ul {
+        max-height: unset;
+        overflow: unset;
+      }
+    }
+  }
+}
+
+/* PRODUCT PAGE */
 .product {
   display: flex;
   flex-direction: column;
@@ -101,141 +224,6 @@
     &-infos {
       flex: 1 50%;
       padding: 0 $padding-screen;
-    }
-  }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* BOUTIQUE */
-.shop {
-  display: flex;
-  flex-direction: column;
-  margin: calc(#{$margin-mobile} / 2) auto;
-
-  &-navigation {
-    background-color: #F9F6F5;    
-    padding: $padding-mobile;
-    position: sticky;
-    top: 0rem;
-    margin: 0 -0.5rem;
-    z-index: 2;
-    
-    .searchbar {
-      padding: calc(#{$padding-mobile} / 1.5) $padding-mobile;
-      color: $c-lightgrey;
-      border: none;
-      border-radius: 5px 5px 0 0;
-      border-bottom: 2px solid $c-secondary;
-      background-color: $c-white;
-
-      font-size: 1em;
-      font-family: $font-text;
-      transition: $t-basic;
-
-      &::placeholder {
-        color: $c-lightgrey;
-        font-size: .9rem;
-      }
-
-      &:focus, &:hover {
-        border: none;
-        border-bottom: 2px solid $c-primary;
-        outline: $c-primary;      
-      }
-    }
-
-    &-sections {
-      width: 100%;
-
-      details {
-        &[open]
-        &[open] summary ~ div {
-          animation: slideFromTop .3s ease-in-out;
-        }
-
-        summary {
-          text-transform: uppercase;
-          font-size: .9rem;
-          font-weight: 700;
-          color: $c-primary;
-        }
-      }
-    }
-
-    &-section:nth-of-type(2) ul {
-      max-height: 25vh;
-      overflow-y: scroll;
-    }
-
-
-    &-link {
-      line-height: 2rem;
-      color: $c-darkgrey;
-      text-decoration-color: transparent;
-
-      &:hover, &.active {
-        text-decoration-color: $c-primary;
-        cursor: pointer;
-        color: $c-primary;
-      }
-    }
-
-    &-label {
-      line-height: 2rem;
-    }
-  }
-
-  h3 {
-    font-size: $font-medium;
-    padding: $padding-mobile 0;
-  }
-
-  
-}
-
-@media screen and (min-width: $bp-medium){
-  .shop { 
-    width: clamp(200px, 100%, 1200px);
-    flex-direction: row;
-    justify-content: center;
-    margin: calc(#{$margin-screen} / 2) auto;
-
-    &-navigation {
-      flex: 1 fit-content;
-      padding: $padding-screen;
-      white-space: nowrap;
-      margin: unset;
-
-      
-      &-sections {
-        position: sticky;
-        top: $margin-screen;
-
-        summary {
-          display: none;
-        }
-      }
-
-      &-section {
-        padding: 0 0 $padding-screen 0;
-      }
-
-      &-section:nth-of-type(2) ul {
-        max-height: unset;
-        overflow: unset;
-      }
     }
   }
 }

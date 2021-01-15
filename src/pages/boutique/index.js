@@ -6,7 +6,7 @@ import { getAssetById, getCategories, getProducts } from "@utils/contentful";
 import { useMediaQuery } from "@utils/hooks/media-query";
 import { Layout } from "@librairy/organisms/index";
 import { ShopCards } from "@librairy/molecules";
-import { H1, H2, H3, Paragraph, Subtitle } from "@librairy/atoms";
+import { H1, H2, H3, Paragraph, Subtitle, SquareImg } from "@librairy/atoms";
 import { BlockShopNews } from "@librairy/molecules/Blocks/ShopNews";
 import { getShopNews } from "@utils/contentful/shop";
 import { stringCleaner } from "@utils/helpers";
@@ -21,7 +21,7 @@ const ShopPage = ({ herologo, categories, allProducts, shopnewsdata }) => {
   const selectedCategoryProducts = allProducts.filter(product => {
     const productsInCategoryEqualToSlug = product.categories.filter(category => category.fields.slug == selectedCategorySlug);
 
-    if (selectedCategorySlug === 'all-categories'
+    if (selectedCategorySlug === 'all-products'
       || productsInCategoryEqualToSlug.length > 0 )
         return true;
   });
@@ -33,7 +33,7 @@ const ShopPage = ({ herologo, categories, allProducts, shopnewsdata }) => {
   });
 
   const handleSearchChange = (e) => {
-    setSelectedCategorySlug('all-categories');
+    setSelectedCategorySlug('all-products');
     setSearchValue(e.target.value);
   }
 
@@ -95,7 +95,15 @@ const ShopPage = ({ herologo, categories, allProducts, shopnewsdata }) => {
                       onClick={() => handleCategoryNavLinkClick('all-categories')}
                       className={(selectedCategorySlug === 'all-categories') ? 'shop-navigation-link active' : 'shop-navigation-link'}
                     >
-                      Toutes les catégories
+                      Voir les catégories
+                    </a>
+                  </li>
+                  <li key={uuid()}>
+                    <a
+                      onClick={() => handleCategoryNavLinkClick('all-products')}
+                      className={(selectedCategorySlug === 'all-products') ? 'shop-navigation-link active' : 'shop-navigation-link'}
+                    >
+                      Tous les produits
                     </a>
                   </li>
                   {
@@ -129,11 +137,34 @@ const ShopPage = ({ herologo, categories, allProducts, shopnewsdata }) => {
           </details>
         </div>
         </aside>
-        { (searchResults.length <= 0) && <Paragraph label="alert">Aucun résultat correspond aux mots-clés : {searchValue}.</Paragraph> }
-        { (selectedCategoryProducts.length <= 0) && <Paragraph label="alert">Aucun produit dans la catégorie sélectionnée.</Paragraph> }
-        { (selectedCategorySlug != 'all-categories') && <ShopCards cardsData={selectedCategoryProducts} /> }     
-        { (searchResults.length > 0 && selectedCategorySlug === 'all-categories') && <ShopCards cardsData={searchResults} /> }
-
+        { selectedCategorySlug == 'all-categories' && 
+          <section className="shop-cards cards-categories">
+            { categories.map(category => 
+              <div className="product-category card" key={uuid()}>
+                <SquareImg src={category.image.url} alt={`Catégorie vedette ${category.name}`} />
+                <a
+                  onClick={() => handleCategoryNavLinkClick(category.slug)}
+                  className='button-secondary'                          
+                >
+                {category.title}
+                </a>
+              </div>
+              ) 
+            }
+          </section>
+         ||
+         searchResults.length <= 0 && 
+          <Paragraph label="alert">Aucun résultat correspond aux mots-clés : {searchValue}.</Paragraph>
+         ||
+         (selectedCategorySlug != 'all-categories' && selectedCategoryProducts.length <= 0) && 
+          <Paragraph label="alert">Aucun produit dans la catégorie sélectionnée.</Paragraph>
+         ||
+         selectedCategorySlug != 'all-products' && 
+          <ShopCards cardsData={selectedCategoryProducts} /> 
+         ||     
+         (searchResults.length > 0 && selectedCategorySlug === 'all-products') && 
+          <ShopCards cardsData={searchResults} /> 
+        }
       </section>
     </Layout>
   )

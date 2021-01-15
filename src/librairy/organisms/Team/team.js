@@ -1,4 +1,4 @@
-import { Paragraph, H2, SquareImg, Subtitle, ButtonPrimary, ButtonSecondary } from "@librairy/atoms";
+import { Paragraph, H2, SquareImg, Subtitle, ButtonPrimary } from "@librairy/atoms";
 import { v4 as uuid } from 'uuid';
 
 export const Team = ({ team }) => {
@@ -17,7 +17,7 @@ export const Team = ({ team }) => {
           ))
         }
       </div>
-      <ButtonSecondary href="/contact">Des questions ? Contactez-nous !</ButtonSecondary>
+      <ButtonPrimary href="/contact">Des questions ? Contactez-nous !</ButtonPrimary>
     </section>
   );
 };

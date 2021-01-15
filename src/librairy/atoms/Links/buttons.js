@@ -1,6 +1,5 @@
 import Link from "next/link";
 import PropTypes from "prop-types";
-import { IconMini } from "../Images";
 
 export const ButtonPrimary = ({ type = 'text', children }) => (
   <button className="button-primary" type={type}>{children}</button>

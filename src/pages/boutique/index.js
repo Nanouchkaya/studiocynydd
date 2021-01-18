@@ -42,6 +42,10 @@ const ShopPage = ({ herologo, categories, allProducts, shopnewsdata }) => {
     setSelectedCategorySlug(slug);
   }
 
+  const handleKeypress = (slug) => {
+    handleCategoryNavLinkClick(slug);
+  }
+
   return (
     <Layout title="Boutique" type="page-header" herologo={herologo}>
     <CardSummary />
@@ -89,9 +93,12 @@ const ShopPage = ({ herologo, categories, allProducts, shopnewsdata }) => {
               </article>
               <article className="shop-navigation-section">
                 <H3>Catégories</H3>
-                <ul>
+                <ul role="menu">
                   <li key={uuid()}>
                     <a
+                      tabIndex="0"
+                      role="menuitem"
+                      onKeyPress={() => handleKeypress('all-categories')}
                       onClick={() => handleCategoryNavLinkClick('all-categories')}
                       className={(selectedCategorySlug === 'all-categories') ? 'shop-navigation-link active' : 'shop-navigation-link'}
                     >
@@ -100,6 +107,9 @@ const ShopPage = ({ herologo, categories, allProducts, shopnewsdata }) => {
                   </li>
                   <li key={uuid()}>
                     <a
+                      tabIndex="0"
+                      role="menuitem"
+                      onKeyPress={() => handleKeypress('all-products')}
                       onClick={() => handleCategoryNavLinkClick('all-products')}
                       className={(selectedCategorySlug === 'all-products') ? 'shop-navigation-link active' : 'shop-navigation-link'}
                     >
@@ -110,7 +120,10 @@ const ShopPage = ({ herologo, categories, allProducts, shopnewsdata }) => {
                     categories.map(category =>
                       <li key={uuid()}>
                         <a
+                          tabIndex="0"
+                          role="menuitem"
                           onClick={() => handleCategoryNavLinkClick(category.slug)}
+                          onKeyPress={() => handleKeypress(category.slug)}
                           className={(selectedCategorySlug === category.slug) ? 'shop-navigation-link active' : 'shop-navigation-link'}                          
                         >
                         {category.title}

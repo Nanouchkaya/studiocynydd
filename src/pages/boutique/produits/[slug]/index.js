@@ -1,6 +1,6 @@
 import { getAssetById, getProductDetails, getProducts } from "@utils/contentful";
-import { H1, H3, Paragraph, Subtitle } from '@librairy/atoms';
-import { Layout} from '@librairy/organisms/index';
+import { H1, H3, Paragraph, Subtitle, Thumbnail } from '@librairy/atoms';
+import { Layout} from '@librairy/organisms';
 import { Gallery } from "@organisms/Gallery";
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { options } from '@utils/rich-text-options';
@@ -8,8 +8,11 @@ import { AddButton } from "@librairy/atoms/Links/buttons";
 import { useState } from "react";
 import { v4 as uuid } from 'uuid';
 import { CardSummary } from "@librairy/molecules/CardSummary";
+import { getProductsFromTheme } from "@utils/contentful/shop";
+import { ShopCards } from "@librairy/molecules";
+import Link from "next/link";
 
-const ShopCategoryPage = ({ herologo, product }) => {
+const ShopCategoryPage = ({ herologo, product, themes }) => {
   const [quantity, setQuantity] = useState(1);
   const arrayOfCustomDataItem = product.variations.map((variation, index) => {
     const name = `data-item-custom${index + 1}-name`
@@ -21,19 +24,22 @@ const ShopCategoryPage = ({ herologo, product }) => {
         [required]: "true",
       }
   })
-
-  let customDataItem = {}
+  let customDataItem = []
+  const productName = product.name;
 
   return (
     <Layout title="Boutique" type="page-header" herologo={herologo}>
     <CardSummary />
       <H1>La Boutique</H1>
       <Subtitle>{product.name}</Subtitle>
+
       <section className="product">
         <Gallery images={product.images} />
         <div className="product-infos">
           <H3>{product.name}</H3>
-
+          <Paragraph customStyle={{textAlign: 'center', fontStyle: 'italic'}}>
+            {product.discount}
+          </Paragraph>
           <div className="product-infos-container">
             <div className="product-buy">
               <div className="product-buy-price">{product.price * quantity}€ <sup>TTC</sup></div>
@@ -71,7 +77,7 @@ const ShopCategoryPage = ({ herologo, product }) => {
             <details className="product-shipping">
               <summary>Livraison & retour</summary>
               {product.shippingMethods.map(shipping => (
-                <div className="product-shipping-item">
+                <div key={uuid()} className="product-shipping-item">
                 <h4 className="product-shipping-item-name">{shipping.fields.name}</h4>
                   {documentToReactComponents(shipping.fields.description, options)}
                 </div>
@@ -110,6 +116,33 @@ const ShopCategoryPage = ({ herologo, product }) => {
           </div>
         </div>
       </section>
+
+      <section className="related-products">
+            <H3>Vous aimerez peut-être aussi</H3>
+            <div className="shop-cards">
+              {
+                themes.map(theme => {
+                  return (
+                    theme.relatedProducts.map(relatedProduct => {
+                      if (relatedProduct.name != productName) return (
+                        <article className="shop-card" key={uuid()}>
+                          <Link href={`/boutique/produits/${relatedProduct.slug}`}>
+                            <a><Thumbnail src={relatedProduct.thumbnail} alt={`Photo : ${relatedProduct.name}`} /></a>
+                          </Link>
+                          <div className="shop-card-infos">
+                            <Link href={`/boutique/produits/${relatedProduct.slug}`}>
+                              <a className="shop-card-infos--title">{relatedProduct.name}</a>
+                            </Link>
+                            <span className='shop-card-infos--price'>{relatedProduct.price} €</span>                      
+                          </div>
+                        </article>
+                      )
+                    })
+                  )
+                })
+              }            
+            </div>
+      </section>
     </Layout>
   )
 }
@@ -134,6 +167,9 @@ export async function getStaticProps({ params }) {
     props : {
       herologo: await getAssetById('13trf7K2jrx5M7fWiW5pbo'),
       product: await getProductDetails(params.slug),
+      themes: await getProductsFromTheme(params.slug)
     }
   }
 }
+
+

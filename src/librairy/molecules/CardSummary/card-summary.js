@@ -1,6 +1,6 @@
 export const CardSummary = () => (
   <div className="card-summary">
-    <a className="snipcart-checkout">
+    <a className="snipcart-checkout" tabIndex='0'>
       Mon panier
     </a>
     <img src='/images/shopping.png' alt='icon-cart' />

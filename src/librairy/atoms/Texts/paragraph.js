@@ -5,9 +5,10 @@ export const Paragraph = ({
   uuid = v4(),
   children,
   label = '',
+  customStyle = {}
 }) => {
   const finalClassName = label ? `paragraph ${label}` : null;
-  return <p key={uuid} className={finalClassName}>{children}</p>;
+  return <p key={uuid} className={finalClassName} style={customStyle}>{children}</p>;
 }
 Paragraph.propTypes = {
   children: PropTypes.any,

@@ -63,6 +63,7 @@ export const parseProductDetails = ({ fields = {} }) => {
     slug: fields?.slug,
     categories: fields?.categories || [],
     price: fields?.price || null,
+    discount: fields?.discount || null,
     variations: fields?.variations || {sys: {}, fields: {}},
     shippingMethods: fields?.shipping || {sys: {}, fields: {}},
     weight: fields.weight || 100,
@@ -71,6 +72,7 @@ export const parseProductDetails = ({ fields = {} }) => {
     description: fields?.description || 'Aucune description',
     faq: fields?.faq || '',
     tags: fields?.relatedProductTag || [],
+    themes: fields?.themes || [],
     isCustomizable: fields?.personnalisation || false,
     isBestSeller: fields?.bestSeller || false,
   }
@@ -126,5 +128,12 @@ export const parseShopNews = ({ fields = {} }) => {
     imageMobile: fields?.imageMobile.fields.file,
     link: fields?.link,
     textLink: fields?.textLink
+  }
+}
+
+export const parseProductThemes = ({ fields = {} }) => {
+  return {
+    name: fields?.name || '',
+    relatedProducts: fields?.products.map(product => parseProduct(product)) || []
   }
 }

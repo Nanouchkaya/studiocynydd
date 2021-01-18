@@ -1,5 +1,5 @@
 import { getClient } from "./client"
-import { parseCategory, parseProduct, parseProductDetails, parseShopNews } from "./parsing"
+import { parseCategory, parseProduct, parseProductDetails, parseProductThemes, parseShopNews } from "./parsing"
 
 export async function getCategories() {
   const allCategories = await getClient().getEntries({
@@ -24,27 +24,27 @@ export async function getProducts() { // only general informations for cards vie
   console.log('Error getting all products.')
 }
 
-// export async function getProductsByCategory(slug) {
-//   const categoriesIdEqualToSlug = await getClient().getEntries({
-//     content_type: 'category',
-//     select: 'sys.id,fields.slug',
-//     'fields.slug': slug,
-//   }) //should match one result only (see contentful unique field)
+export async function getProductsByCategory(slug) {
+  const categoriesIdEqualToSlug = await getClient().getEntries({
+    content_type: 'category',
+    select: 'sys.id,fields.slug',
+    'fields.slug': slug,
+  }) //should match one result only (see contentful unique field)
 
-//   if (categoriesIdEqualToSlug.items.length > 0) {
-//     const productsCategory = await getClient().getEntries({
-//       content_type: 'product',
-//       'fields.categories.sys.id': categoriesIdEqualToSlug.items[0].sys.id, 
-//     });
+  if (categoriesIdEqualToSlug.items.length > 0) {
+    const productsCategory = await getClient().getEntries({
+      content_type: 'product',
+      'fields.categories.sys.id': categoriesIdEqualToSlug.items[0].sys.id, 
+    });
 
-//     if (productsCategory.total > 0) return productsCategory.items.map(product => parseProduct(product))
-//   }
-//   console.log(`Error getting products for category ${slug}.`)
-//   return {
-//     error: true,
-//     message: 'Aucun produit pour cette catégorie',
-//   }
-// }
+    if (productsCategory.total > 0) return productsCategory.items.map(product => parseProduct(product))
+  }
+  console.log(`Error getting products for category ${slug}.`)
+  return {
+    error: true,
+    message: 'Aucun produit pour cette catégorie',
+  }
+}
 
 export async function getProductDetails(slug) { // for product detailed page
   const productDetails = await getClient().getEntries({
@@ -69,4 +69,19 @@ export const getShopNews = async () => {
   if (shopNews) return shopNews.items.map(news => parseShopNews(news))
 
   console.log('Error getting data for shop news content model')
+}
+
+
+/* RELATED PRODUTS */
+export const getProductsFromTheme = async (productSlug = 'carte-a-planter-marraine') => {
+  const allThemes = await getClient().getEntries({
+    content_type: 'theme',
+  })
+
+  const themesWithProductSlug = allThemes.items.filter(theme => {
+    const productsSlug = theme.fields.products.map(product => product.fields.slug)
+    return productsSlug.includes(productSlug)
+  })
+
+   if (themesWithProductSlug) return themesWithProductSlug.map(theme => parseProductThemes(theme))
 }

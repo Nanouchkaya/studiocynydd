@@ -1,14 +1,30 @@
 import { Layout } from "@librairy/organisms/index";
-import { H1, H3 } from "@librairy/atoms";
+import { H1, LandscapeImg, Subtitle } from "@librairy/atoms";
+import { getAssetById } from "@utils/contentful";
+import { globalAssetsID } from "@utils/site-constants";
 
-export default function Custom404() {
-  return <Layout type="header-page">
-    <H1>404</H1>
-    <picture>
-      <source srcSet={`./images/branche.png?fm=webp`} type="image/webp" />
-      <source srcSet={`./images/branche.png?fm=jpeg`} type="image/jpeg" />
-      <img src='./images/branche.png' alt='branche' style={{margin: 'auto', width: '200px'}} loading="lazy" />
-    </picture>
-    <H3><span style={{color: '#746663'}}>Oups ! Page introuvable :(</span></H3>
-  </Layout>
+export default function Custom404({ layout, branche }) {
+  return (
+    <Layout type="header-page" {...layout}>
+      <H1>404</H1>
+      <Subtitle>Oups ! Page introuvable :(</Subtitle>
+      <LandscapeImg src={branche.url} alt={branche.alt} width={branche.width} height={branche.height} />
+    </Layout>
+  )
+}
+
+export async function getStaticProps() {
+  return {
+    props: {
+      layout: {
+        herologo: await getAssetById(globalAssetsID.herologo),
+        labelFooter: {
+          livraison: await getAssetById(globalAssetsID.livraison),
+          paiement: await getAssetById(globalAssetsID.paiement),
+          creationFr: await getAssetById(globalAssetsID.creationFr),
+        },
+      },
+      branche: await getAssetById('1OiPWXfmrG8FkbPtDxPmIJ'),
+    }
+  }
 }

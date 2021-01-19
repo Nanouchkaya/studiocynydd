@@ -25,6 +25,10 @@
   .product-category.card {
     margin: calc(#{$margin-mobile / 4});
     flex-basis: calc(50% - #{$margin-mobile / 2});
+
+    &:hover {
+      cursor: pointer;
+    }
     
     .button-secondary {
       width: 70%;

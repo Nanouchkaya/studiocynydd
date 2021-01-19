@@ -20,6 +20,7 @@
     width: clamp(135px, calc(50% - calc(#{$margin-mobile} / 3)), 400px);
     margin: 0 calc(#{$margin-mobile} / 6) calc(#{$margin-mobile} / 2);
     min-height: 200px;
+    height: fit-content;
     transition: all 0.2s ease-in-out;
 
     box-shadow: 0px 5px 10px rgba($c-lightgrey, 0.3);

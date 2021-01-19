@@ -13,23 +13,34 @@ import { globalAssetsID } from "@utils/site-constants";
 import { RelatedProdducts } from "@librairy/molecules/RelatedProducts";
 import { ProductVariations } from "@librairy/molecules/ProductVariations";
 import { ProductShipping } from "@librairy/molecules/ProductShipping";
+import { useRouter } from "next/router";
+import Link from "next/link";
+import { dashToSpace } from "@utils/helpers";
 
 const ShopCategoryPage = ({ layout, product, themes }) => {
+  const router = useRouter()
+  const catSlug = router.query.cat ? router.query.cat : product.categories[0].fields.slug;
   const [quantity, setQuantity] = useState(1);
-  const arrayOfCustomDataItem = typeof product.variations == 'array'
-    ? product.variations.map((variation, index) => {
-      const name = `data-item-custom${index + 1}-name`
-      const options = `data-item-custom${index + 1}-options`
-      const required = `data-item-custom${index + 1}-required`
-        return {
-          [name]: variation.fields.name,
-          [options]: variation.fields.dataOptions,
-          [required]: "true",
-        }
-    })
-    : []
-  let customDataItem = []
   const productName = product.name;
+
+  const getArrayOfCustomDataItem = (variations) => {
+    if (typeof variations != 'undefined') return (
+      variations.map((variation, index) => {
+        const name = `data-item-custom${index + 1}-name`
+        const options = `data-item-custom${index + 1}-options`
+        const required =  `data-item-custom${index + 1}-required`
+          return {
+            [name]: variation.fields.name,
+            [options]: variation.fields.dataOptions,
+            [required]: "true",
+          }
+      })
+    )
+
+    return []
+  }
+
+  let customDataItem = []
 
   return (
     <Layout title="Boutique" type="page-header" {...layout}>
@@ -41,6 +52,23 @@ const ShopCategoryPage = ({ layout, product, themes }) => {
         <Gallery images={product.images} />
 
         <div className="product-infos">
+        <nav>
+          <ul className="breadcrumb">
+            <li className="breadcrumb-link">
+              <Link href='/boutique'>Boutique</Link>
+            </li>
+
+            <li className="breadcrumb-link">
+              <Link href={{
+                pathname: '/boutique',
+                query: { cat: router.query.cat}
+              }}>
+                <a>{dashToSpace(catSlug)}</a>
+              </Link>
+            </li>
+          </ul>
+        </nav>
+
           <H3>{product.name}</H3>
 
           <Paragraph customStyle={{textAlign: 'center', fontStyle: 'italic'}}>
@@ -60,7 +88,7 @@ const ShopCategoryPage = ({ layout, product, themes }) => {
             </Paragraph>
 
             {
-              arrayOfCustomDataItem.forEach(element => {
+              getArrayOfCustomDataItem(product.variations).forEach(element => {
                 customDataItem = {...customDataItem, ...element}
               })
             }
@@ -72,6 +100,7 @@ const ShopCategoryPage = ({ layout, product, themes }) => {
               price={product.price}
               thumbnail={product.thumbnail}
               weight={product.weight}
+              customizable={product.isCustomizable}
               {...customDataItem}
             />
 

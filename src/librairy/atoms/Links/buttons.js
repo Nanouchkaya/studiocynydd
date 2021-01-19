@@ -26,7 +26,6 @@ ButtonSecondary.propTypes = {
 }
 
 export const AddButton = ({ quantity, slug, name, price, thumbnail, weight, ...customDataItem }) => { 
-  //console.log(customDataItem)
   return (
     <button
       className="snipcart-add-item button-add"
@@ -56,7 +55,7 @@ export const AddButtonSmall = ({ slug, name, price, weight, thumbnail, ...custom
       data-item-weight={weight}
       {...customDataItem}     
       >
-          Ajouter <img src='/images/shopping.png' alt='icon-cart' />
+        Ajouter <img src='/images/shopping.png' alt='icon-cart' />
     </button>
   )
 };

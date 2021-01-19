@@ -13,3 +13,12 @@ export const stringCleaner = (string) => {
   const cleanedString = string.trim().toLowerCase();
   return cleanedString;
 }
+
+/**
+ * Replace dash (-) with space (eg. for slug carte-a-planter return carte a planter)
+ * @param {string} string 
+ */
+export const dashToSpace = (string) => {
+  const newString = string.replace(/-/g, ' ');
+  return newString;
+}

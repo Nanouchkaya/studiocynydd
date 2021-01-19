@@ -121,6 +121,27 @@
 }
 
 /* PRODUCT PAGE */
+.breadcrumb {
+  display: flex;
+  margin: 0 0 $padding-screen;
+
+  &-link {
+    text-transform: uppercase;
+    font-style: $font-title;
+    font-size: .9rem;
+  }
+
+  &-link:nth-of-type(2)::before {
+    content: '~>';
+    font-style: $font-title;
+    padding: 0 $padding-mobile;
+  }
+
+  a:hover {
+    color: $c-primary
+  }
+}
+
 .product {
   display: flex;
   flex-direction: column;
@@ -202,7 +223,6 @@
 }
 
 .related-products {
-
   .shop-card {
     background-color: $c-white;
   }

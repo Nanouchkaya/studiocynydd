@@ -65,7 +65,7 @@ export const parseProductDetails = ({ fields = {} }) => {
     categories: fields?.categories || [],
     price: fields?.price || null,
     discount: fields?.discount || null,
-    variations: fields?.variations || null,
+    variations: fields?.variations,
     shippingMethods: fields?.shipping || {sys: {}, fields: {}},
     weight: fields.weight || 100,
     images: fields?.images || [],
@@ -73,8 +73,7 @@ export const parseProductDetails = ({ fields = {} }) => {
     description: fields?.description || 'Aucune description',
     faq: fields?.faq || '',
     tags: fields?.relatedProductTag || [],
-    themes: fields?.themes || [],
-    isCustomizable: fields?.personnalisation || false,
+    themes: fields?.themes || [],   
     isBestSeller: fields?.bestSeller || false,
     isAvailable: fields?.stock || true,
   }

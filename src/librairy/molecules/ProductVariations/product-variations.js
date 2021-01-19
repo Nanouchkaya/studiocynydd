@@ -3,7 +3,7 @@ export const ProductVariations = ({ variations }) => {
     <details className="product-variations">
         <summary>Options disponibles</summary>
         <Paragraph label="alert">Les options sont à définir dans votre panier au moment de l'ajout de l'article.</Paragraph>
-      { typeof variations == 'array' &&
+      {
         variations.map(variation => {
           const hasOptions = variation.fields?.options?.length > 0;
           return (

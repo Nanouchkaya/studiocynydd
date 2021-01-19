@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Carousel } from 'react-responsive-carousel';
 import { v4 as uuid } from 'uuid';
 import { getAssetById, getCategories, getProducts } from "@utils/contentful";
@@ -12,10 +12,12 @@ import { getShopNews } from "@utils/contentful/shop";
 import { stringCleaner } from "@utils/helpers";
 import { globalAssetsID } from '@utils/site-constants';
 import { CardSummary } from "@librairy/molecules/CardSummary";
+import { useRouter } from "next/router";
 
 const ShopPage = ({ layout, categories, allProducts, shopnewsdata }) => {
+  const router = useRouter()
   const isBreakpoint = useMediaQuery(768);
-  const [selectedCategorySlug, setSelectedCategorySlug] = useState('all-categories');
+  const [selectedCategorySlug, setSelectedCategorySlug] = useState(router.query.cat ?? 'all-categories');
   const [searchValue, setSearchValue] = useState('');
 
   const selectedCategoryProducts = allProducts.filter(product => {
@@ -110,7 +112,7 @@ const ShopPage = ({ layout, categories, allProducts, shopnewsdata }) => {
                       tabIndex="0"
                       role="menuitem"
                       onKeyPress={() => handleKeypress('all-products')}
-                      onClick={() => handleCategoryNavLinkClick('all-products')}
+                      onClick={(e) => handleCategoryNavLinkClick(e, 'all-products')}
                       className={(selectedCategorySlug === 'all-products') ? 'shop-navigation-link active' : 'shop-navigation-link'}
                     >
                       Tous les produits
@@ -154,12 +156,9 @@ const ShopPage = ({ layout, categories, allProducts, shopnewsdata }) => {
           <section className="shop-cards cards-categories">
             { categories.map(category => 
               <div className="product-category card" key={uuid()}>
-                <SquareImg src={category.image.url} alt={`Catégorie vedette ${category.name}`} />
-                <a
-                  onClick={() => handleCategoryNavLinkClick(category.slug)}
-                  className='button-secondary'                          
-                >
-                {category.title}
+                <a onClick={() => handleCategoryNavLinkClick(category.slug)}>
+                  <SquareImg src={category.image.url} alt={`Catégorie vedette ${category.name}`} />
+                  <span className="button-secondary">{category.title}</span>
                 </a>
               </div>
               ) 

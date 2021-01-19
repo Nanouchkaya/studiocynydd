@@ -17,10 +17,14 @@
   
   &-card { 
     position: relative;
-    width: clamp(130px, calc(50% - calc(#{$margin-mobile} / 2)), 400px);
-    margin: 0 calc(#{$margin-mobile} / 4) calc(#{$margin-mobile} / 2);
+    width: clamp(135px, calc(50% - calc(#{$margin-mobile} / 3)), 400px);
+    margin: 0 calc(#{$margin-mobile} / 6) calc(#{$margin-mobile} / 2);
     min-height: 200px;
     transition: all 0.2s ease-in-out;
+
+    box-shadow: 0px 5px 10px rgba($c-lightgrey, 0.3);
+    border-radius: 5px;
+    padding: .5rem;
     
     // @include imageSeeMoreFlag($c-darkgrey, "Plus d'infos");
     // &::before {
@@ -29,10 +33,6 @@
 
     .img-thumbnail {
       transition: all 0.2s ease-in-out;
-    }
-    &:hover .img-thumbnail {
-      filter: blur(1px);
-      opacity: 0.8;
     }
 
     &-infos {
@@ -61,6 +61,12 @@
       font-size: $font-medium;
     }
 
+    &-infos--stock {
+      display: block;
+      text-align: right;
+      width: 100%;
+    }
+
     &-labels {
       position: absolute;
       top: 0.5rem;
@@ -87,6 +93,10 @@
   .shop {
     &-card {
       width: clamp(150px, calc(30% - calc(#{$padding-mobile} / 2)), 400px);
+    }
+
+    &-card:hover {
+      box-shadow: 0px 5px 10px $c-lightgrey;
     }
   }
 }

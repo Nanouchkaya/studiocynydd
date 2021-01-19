@@ -8,7 +8,8 @@ export const Layout = ({
   title = 'Papeterie pleine de vie',
   type = "index-header",
   herologo,
-  slogan
+  slogan,
+  labelFooter
 }) => {
   return (
     <>
@@ -33,7 +34,7 @@ export const Layout = ({
         {children}
         <Anchors />
       </main>
-      <Footer />
+      <Footer labelFooter={labelFooter} />
     </>
   )
 }

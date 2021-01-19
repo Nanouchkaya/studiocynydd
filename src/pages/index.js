@@ -7,7 +7,7 @@ const HomePage = (props) => {
   return(
     <React.Fragment>
       {/*<SVGTag />*/}
-      <Layout herologo={props.herologo} slogan={props.slogan}>
+      <Layout {...props.layout}>
         <H1>Bienvenue !</H1>
         <Subtitle>Studio Cynydd, c'est une boutique en ligne proposant une gamme complète de papeterie et des créations personnalisées pour particuliers et professionnels.</Subtitle>
         <FeaturedItems categories={props.featuredItems} />
@@ -21,18 +21,25 @@ const HomePage = (props) => {
   )
 };
 
-export default HomePage;
+export default HomePage
 
 export async function getStaticProps() {
   return {
     props: {
-      herologo: await getAssetById(globalAssetsID.herologo),
-      slogan: await getAssetById(globalAssetsID.slogan),
+      layout: {
+        herologo: await getAssetById(globalAssetsID.herologo),
+        slogan: await getAssetById(globalAssetsID.slogan),
+        labelFooter: {
+          livraison: await getAssetById(globalAssetsID.livraison),
+          paiement: await getAssetById(globalAssetsID.paiement),
+          creationFr: await getAssetById(globalAssetsID.creationFr),
+        },
+      },
       lastPrestation: await getLastPrestation(),
       featuredItems: await getFeaturedItems(),
       team: await getBlockContentBySection('team'),
       testimonials: await getTestimonials(),
-      instaFeed: await getInstaFeed()
+      instaFeed: await getInstaFeed(),
     }
   }
 }

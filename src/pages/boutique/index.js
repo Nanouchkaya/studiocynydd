@@ -13,7 +13,7 @@ import { stringCleaner } from "@utils/helpers";
 import { globalAssetsID } from '@utils/site-constants';
 import { CardSummary } from "@librairy/molecules/CardSummary";
 
-const ShopPage = ({ herologo, categories, allProducts, shopnewsdata }) => {
+const ShopPage = ({ layout, categories, allProducts, shopnewsdata }) => {
   const isBreakpoint = useMediaQuery(768);
   const [selectedCategorySlug, setSelectedCategorySlug] = useState('all-categories');
   const [searchValue, setSearchValue] = useState('');
@@ -47,7 +47,7 @@ const ShopPage = ({ herologo, categories, allProducts, shopnewsdata }) => {
   }
 
   return (
-    <Layout title="Boutique" type="page-header" herologo={herologo}>
+    <Layout title="Boutique" type="page-header" {...layout}>
     <CardSummary />
       <H1>La Boutique</H1>
       <Subtitle>Découvrez toutes les créations du Studio Cynydd</Subtitle>
@@ -195,7 +195,14 @@ export default ShopPage;
 export async function getStaticProps() {
   return {
     props : {
-      herologo: await getAssetById(globalAssetsID.herologo),
+      layout: {
+        herologo: await getAssetById(globalAssetsID.herologo),
+        labelFooter: {
+          livraison: await getAssetById(globalAssetsID.livraison),
+          paiement: await getAssetById(globalAssetsID.paiement),
+          creationFr: await getAssetById(globalAssetsID.creationFr),
+        },
+      },
       categories: await getCategories(),
       allProducts: await getProducts(),
       shopnewsdata: await getShopNews(),

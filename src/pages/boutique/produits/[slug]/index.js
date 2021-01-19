@@ -1,5 +1,5 @@
 import { getAssetById, getProductDetails, getProducts } from "@utils/contentful";
-import { H1, H3, Paragraph, Subtitle, Thumbnail } from '@librairy/atoms';
+import { H1, H3, Paragraph, Subtitle } from '@librairy/atoms';
 import { Layout} from '@librairy/organisms';
 import { Gallery } from "@organisms/Gallery";
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
@@ -9,37 +9,44 @@ import { useState } from "react";
 import { v4 as uuid } from 'uuid';
 import { CardSummary } from "@librairy/molecules/CardSummary";
 import { getProductsFromTheme } from "@utils/contentful/shop";
-import { ShopCards } from "@librairy/molecules";
-import Link from "next/link";
+import { globalAssetsID } from "@utils/site-constants";
+import { RelatedProdducts } from "@librairy/molecules/RelatedProducts";
+import { ProductVariations } from "@librairy/molecules/ProductVariations";
+import { ProductShipping } from "@librairy/molecules/ProductShipping";
 
-const ShopCategoryPage = ({ herologo, product, themes }) => {
+const ShopCategoryPage = ({ layout, product, themes }) => {
   const [quantity, setQuantity] = useState(1);
-  const arrayOfCustomDataItem = product.variations.map((variation, index) => {
-    const name = `data-item-custom${index + 1}-name`
-    const options = `data-item-custom${index + 1}-options`
-    const required = `data-item-custom${index + 1}-required`
-      return {
-        [name]: variation.fields.name,
-        [options]: variation.fields.dataOptions,
-        [required]: "true",
-      }
-  })
+  const arrayOfCustomDataItem = typeof product.variations == 'array'
+    ? product.variations.map((variation, index) => {
+      const name = `data-item-custom${index + 1}-name`
+      const options = `data-item-custom${index + 1}-options`
+      const required = `data-item-custom${index + 1}-required`
+        return {
+          [name]: variation.fields.name,
+          [options]: variation.fields.dataOptions,
+          [required]: "true",
+        }
+    })
+    : []
   let customDataItem = []
   const productName = product.name;
 
   return (
-    <Layout title="Boutique" type="page-header" herologo={herologo}>
+    <Layout title="Boutique" type="page-header" {...layout}>
     <CardSummary />
       <H1>La Boutique</H1>
       <Subtitle>{product.name}</Subtitle>
 
       <section className="product">
         <Gallery images={product.images} />
+
         <div className="product-infos">
           <H3>{product.name}</H3>
+
           <Paragraph customStyle={{textAlign: 'center', fontStyle: 'italic'}}>
             {product.discount}
           </Paragraph>
+
           <div className="product-infos-container">
             <div className="product-buy">
               <div className="product-buy-price">{product.price * quantity}€ <sup>TTC</sup></div>
@@ -47,6 +54,10 @@ const ShopCategoryPage = ({ herologo, product, themes }) => {
               <a onClick={() => setQuantity(quantity + 1)}>+ </a> <a onClick={() => setQuantity(Math.max(0, quantity - 1))}> -</a>
               </div>
             </div>
+
+            <Paragraph customStyle={{textAlign: 'center', padding: '0'}}>
+              { product.isAvailable ? 'En stock' : 'Rupture'}
+            </Paragraph>
 
             {
               arrayOfCustomDataItem.forEach(element => {
@@ -74,75 +85,18 @@ const ShopCategoryPage = ({ herologo, product, themes }) => {
               {documentToReactComponents(product.faq, options)}
             </details>
 
-            <details className="product-shipping">
-              <summary>Livraison & retour</summary>
-              {product.shippingMethods.map(shipping => (
-                <div key={uuid()} className="product-shipping-item">
-                <h4 className="product-shipping-item-name">{shipping.fields.name}</h4>
-                  {documentToReactComponents(shipping.fields.description, options)}
-                </div>
-              ))}
-            </details>
+            { product.shippingMethods.length > 0 && <ProductShipping shippingMethods={product.shippingMethods} /> }
 
-            <details className="product-variations">
-                <summary>Options disponibles</summary>
-                <Paragraph label="alert">Les options sont à définir dans votre panier au moment de l'ajout de l'article.</Paragraph>
-              {
-                product.variations.map(variation => {
-                  const hasOptions = variation.fields?.options?.length > 0;
-                  return (
-                    <div key={uuid()} className="product-variations-item">
-                      <span className="product-variations-item-name">{variation.fields.name}</span>
-                      { hasOptions && (
-                        <ul className="options-list">
-                            {variation.fields.options.map(option => (
-                              <li key={uuid()} className="options-list-item">{option}</li>
-                            ))}
-                        </ul>
-                        )
-                      }
-                      { !hasOptions && <Paragraph>Aucune option disponible pour cet article.</Paragraph> }         
-                    </div>
-                  )
-                })
-              }
-            </details>
+            { typeof product.variations == 'array' && <ProductVariations variations={product.variations} />}
 
           <div className="product-tags">
-            {
-              product.tags.map(tag => <span key={uuid()} className="product-tags-item">{tag}</span>)
-            }
+            Tags : { product.tags.map(tag => <span key={uuid()} className="product-tags-item">{tag}</span>) }
           </div>
           </div>
         </div>
       </section>
 
-      <section className="related-products">
-            <H3>Vous aimerez peut-être aussi</H3>
-            <div className="shop-cards">
-              {
-                themes.map(theme => {
-                  return (
-                    theme.relatedProducts.map(relatedProduct => {
-                      if (relatedProduct.name != productName) return (
-                        <article className="shop-card" key={uuid()}>
-                          <Link href={`/boutique/produits/${relatedProduct.slug}`}>
-                            <a><Thumbnail src={relatedProduct.thumbnail} alt={`Photo : ${relatedProduct.name}`} /></a>
-                          </Link>
-                          <div className="shop-card-infos">
-                            <Link href={`/boutique/produits/${relatedProduct.slug}`}>
-                              <a className="shop-card-infos--title">{relatedProduct.name}</a>
-                            </Link>
-                            <span className='shop-card-infos--price'>{relatedProduct.price} €</span>                      
-                          </div>
-                        </article>
-                      )
-                    })
-                  )
-                })
-              }            
-            </div>
-      </section>
+      { themes.length > 0 && <RelatedProdducts themes={themes} productName={productName} /> }
     </Layout>
   )
 }
@@ -154,7 +108,7 @@ export async function getStaticPaths() {
   const products = await getProducts();
 
   const paths = products.map((product) => (
-    { params: { slug: 'carte-a-planter-marraine' } } //product.slug
+    { params: { slug: product.slug } }
   ))
 
   // We'll pre-render only these paths at build time.
@@ -165,7 +119,14 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   return {
     props : {
-      herologo: await getAssetById('13trf7K2jrx5M7fWiW5pbo'),
+      layout: {
+        herologo: await getAssetById(globalAssetsID.herologo),
+        labelFooter: {
+          livraison: await getAssetById(globalAssetsID.livraison),
+          paiement: await getAssetById(globalAssetsID.paiement),
+          creationFr: await getAssetById(globalAssetsID.creationFr),
+        },
+      },
       product: await getProductDetails(params.slug),
       themes: await getProductsFromTheme(params.slug)
     }

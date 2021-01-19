@@ -1,0 +1,1 @@
+export { RelatedProdducts } from './related-products'

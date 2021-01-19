@@ -202,6 +202,10 @@
 }
 
 .related-products {
+
+  .shop-card {
+    background-color: $c-white;
+  }
   h3 {
     margin: $margin-screen auto;
     text-align: center;
@@ -251,7 +255,14 @@
   }
 
   .related-products {
+    background-color: $c-neutral;
+    padding: $padding-screen;
     margin: auto;
     width: clamp(500px, 80%, 1200px);
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    align-content: center;
   }
 }

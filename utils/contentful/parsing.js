@@ -48,6 +48,7 @@ export const parseProduct = ({ fields, sys }) => {
     categories: fields?.categories || [],
     isDiscount: fields.discount ? true : false,
     isNew: productIsNew(sys.createdAt),
+    isAvailable: fields?.stock || true,
   }
 }
 
@@ -64,7 +65,7 @@ export const parseProductDetails = ({ fields = {} }) => {
     categories: fields?.categories || [],
     price: fields?.price || null,
     discount: fields?.discount || null,
-    variations: fields?.variations || {sys: {}, fields: {}},
+    variations: fields?.variations || null,
     shippingMethods: fields?.shipping || {sys: {}, fields: {}},
     weight: fields.weight || 100,
     images: fields?.images || [],
@@ -75,6 +76,7 @@ export const parseProductDetails = ({ fields = {} }) => {
     themes: fields?.themes || [],
     isCustomizable: fields?.personnalisation || false,
     isBestSeller: fields?.bestSeller || false,
+    isAvailable: fields?.stock || true,
   }
 }
 

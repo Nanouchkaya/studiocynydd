@@ -1,20 +1,45 @@
-import { H3, ListLink } from '@librairy/atoms';
+import { H3, LandscapeImg, ListLink } from '@librairy/atoms';
 import { v4 as uuidv4 } from 'uuid';
 import { socialNetworkLinks } from '@utils/site-constants';
 
-export const Footer = () => {
+export const Footer = ({ labelFooter }) => {
   return ( 
     <footer id="footer">
-    { footerSections.map(section => (
-      <section key={uuidv4()}>
-        <H3>{section.name}</H3>
-        <ul>
-        {
-          section.links.map(link => <ListLink key={uuidv4()} href={link.href} rel={link.rel}>{link.text}</ListLink>)
-        }               
-        </ul>
-      </section>
-    ))}
+    <div className="footer-labels">
+      <img
+        src={labelFooter.livraison.url}
+        alt={labelFooter.livraison.alt}
+        width={labelFooter.livraison.width}
+        height={labelFooter.livraison.height}
+        loading="lazy"
+      />
+      <img
+        src={labelFooter.paiement.url}
+        alt={labelFooter.paiement.alt}
+        width={labelFooter.paiement.width}
+        height={labelFooter.paiement.height}
+        loading="lazy"
+      />
+      <img
+        src={labelFooter.creationFr.url}
+        alt={labelFooter.creationFr.alt}
+        width={labelFooter.creationFr.width}
+        height={labelFooter.creationFr.height}
+        loading="lazy"
+      />
+    </div>
+    <div className="footer-links">
+      { footerSections.map(section => (
+        <section key={uuidv4()}>
+          <H3>{section.name}</H3>
+          <ul>
+          {
+            section.links.map(link => <ListLink key={uuidv4()} href={link.href} rel={link.rel}>{link.text}</ListLink>)
+          }               
+          </ul>
+        </section>
+      ))}
+    </div>
     </footer>
   );
 }

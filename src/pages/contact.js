@@ -5,10 +5,10 @@ import { options } from '@utils/rich-text-options';
 import { Layout } from "@librairy/organisms/Layout";
 import { Form, H1, Subtitle } from "@librairy/atoms";
 
-const Contact = ({ herologo, title, description, body }) => {
+const Contact = ({ layout, title, description, body }) => {
   
   return (
-    <Layout title={title} type="page-header" herologo={herologo}>
+    <Layout title={title} type="page-header" {...layout}>
     <H1>{title}</H1>
     <Subtitle>{description}</Subtitle>
     <section id="about">
@@ -25,7 +25,14 @@ export async function getStaticProps() {
   const data = await getPageContent('3ImckLlh9XklSfG7eOTGs2');
   return {
     props: {
-      herologo: await getAssetById(globalAssetsID.herologo),
+      layout: {
+        herologo: await getAssetById(globalAssetsID.herologo),
+        labelFooter: {
+          livraison: await getAssetById(globalAssetsID.livraison),
+          paiement: await getAssetById(globalAssetsID.paiement),
+          creationFr: await getAssetById(globalAssetsID.creationFr),
+        },
+      },
       title: data?.title ?? null,
       description: data?.description ?? null,
       body: data?.body ?? null,

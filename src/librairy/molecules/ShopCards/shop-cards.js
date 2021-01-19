@@ -34,6 +34,7 @@ export const ShopCards = ({ cardsData }) => {
               <a className="shop-card-infos--title">{currentCard.name}</a>
             </Link>
             <span className='shop-card-infos--price'>{currentCard.price} € </span>
+            <span className='shop-card-infos--stock'>{ currentCard.isAvailable ? 'En stock' : 'Rupture'}</span>
             {
               arrayOfCustomDataItem.forEach(element => {
                 customDataItem = {...customDataItem, ...element}

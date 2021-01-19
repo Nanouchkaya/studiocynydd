@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-export const LandscapeImg = ({ alt = '', src, position = '', customClass = '' }) => {
+export const LandscapeImg = ({ alt = '', src, height = null, width = null, position = '', customClass = '' }) => {
   const margin = position === 'center' ? 'auto' : '';
   const float = position === 'center' ? '' : position;
   
@@ -7,7 +7,15 @@ export const LandscapeImg = ({ alt = '', src, position = '', customClass = '' })
     <picture className='picture-wrapper'>
       <source srcSet={`${src}?fm=webp`} type="image/webp" />
       <source srcSet={`${src}?fm=jpeg`} type="image/jpeg" />
-      <img className={`img-landscape ${customClass}`} src={src} alt={alt} style={{margin: margin, float: float}} loading="lazy" />
+      <img
+        className={`img-landscape ${customClass}`}
+        src={src}
+        alt={alt}
+        width={width}
+        height={height}
+        style={{margin: margin, float: float}}
+        loading="lazy"
+      />
     </picture>
   )
 }

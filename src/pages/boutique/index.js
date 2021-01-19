@@ -112,7 +112,7 @@ const ShopPage = ({ layout, categories, allProducts, shopnewsdata }) => {
                       tabIndex="0"
                       role="menuitem"
                       onKeyPress={() => handleKeypress('all-products')}
-                      onClick={(e) => handleCategoryNavLinkClick(e, 'all-products')}
+                      onClick={() => handleCategoryNavLinkClick('all-products')}
                       className={(selectedCategorySlug === 'all-products') ? 'shop-navigation-link active' : 'shop-navigation-link'}
                     >
                       Tous les produits

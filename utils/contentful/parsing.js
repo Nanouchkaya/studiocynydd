@@ -65,7 +65,7 @@ export const parseProductDetails = ({ fields = {} }) => {
     categories: fields?.categories || [],
     price: fields?.price || null,
     discount: fields?.discount || null,
-    variations: fields?.variations,
+    variations: fields?.variations || [],
     shippingMethods: fields?.shipping || {sys: {}, fields: {}},
     weight: fields.weight || 100,
     images: fields?.images || [],

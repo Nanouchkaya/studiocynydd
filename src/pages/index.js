@@ -4,6 +4,7 @@ import { getAssetById, getBlockContentBySection, getFeaturedItems, getInstaFeed,
 import { globalAssetsID } from '@utils/site-constants';
                                     
 const HomePage = (props) => {
+  console.log(props.layout)
   return(
     <React.Fragment>
       {/*<SVGTag />*/}
@@ -27,9 +28,9 @@ export async function getStaticProps() {
   return {
     props: {
       layout: {
-        sitePhoto: await getAssetById(globalAssetsID.sitePhoto),
         herologo: await getAssetById(globalAssetsID.herologo),
         slogan: await getAssetById(globalAssetsID.slogan),
+        sitePhoto: await getAssetById(globalAssetsID.sitePhoto),
         labelFooter: {
           livraison: await getAssetById(globalAssetsID.livraison),
           paiement: await getAssetById(globalAssetsID.paiement),

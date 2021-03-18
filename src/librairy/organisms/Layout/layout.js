@@ -8,12 +8,11 @@ export const Layout = ({
   children,
   title = 'Papeterie pleine de vie',
   type = "index-header",
-  sitePhoto,
   herologo,
   slogan,
+  sitePhoto,
   labelFooter
 }) => {
-  console.log(sitePhoto)
   return (
     <React.Fragment>
       <Head>

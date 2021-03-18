@@ -5,7 +5,7 @@ import { globalAssetsID } from '@utils/site-constants';
                                     
 const HomePage = (props) => {
   return(
-    <React.Fragment>
+    <>
       {/*<SVGTag />*/}
       <Layout {...props.layout}>
         <H1>Bienvenue !</H1>
@@ -17,7 +17,7 @@ const HomePage = (props) => {
         <Newsletter />
         <InstaFeed feed={props.instaFeed} />
       </Layout>
-    </React.Fragment>
+    </>
   )
 };
 

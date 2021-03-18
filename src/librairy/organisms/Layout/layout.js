@@ -14,7 +14,7 @@ export const Layout = ({
   labelFooter
 }) => {
   return (
-    <React.Fragment>
+    <>
       <Head>
         <title>{`${siteInfos.name} | ${title}`}</title>
         <meta charSet="utf-8" />
@@ -43,7 +43,7 @@ export const Layout = ({
         <Anchors />
       </main>
       <Footer labelFooter={labelFooter} />
-    </React.Fragment>
+    </>
   )
 }
 

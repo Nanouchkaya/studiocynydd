@@ -1,11 +1,20 @@
-# Cynydd
+# Studio Cynydd
 Commercial website and e-shop of Cynydd.
 
 ## What's inside?
 
-- NextJS for static side generation (react)
-- Vercel - CDN
-- Contentful headless CMS
-- SnipCart CRM and cart system
-- Stripe paiement service provider
+- [NextJS](https://nextjs.org/)
+- [Vercel](https://vercel.com/)
+- [Contentful](https://www.contentful.com/)
+- [SnipCart](https://snipcart.com/)
+
+## Running Locally
+
+```git clone https://github.com/Nanouchkaya/studiocynydd.git```
+
+```yarn```
+
+```yarn dev```
+
+Create a `.env` file similar to `.env.example`.
 

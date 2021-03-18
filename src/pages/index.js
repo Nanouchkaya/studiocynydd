@@ -4,7 +4,6 @@ import { getAssetById, getBlockContentBySection, getFeaturedItems, getInstaFeed,
 import { globalAssetsID } from '@utils/site-constants';
                                     
 const HomePage = (props) => {
-  console.log(props.layout)
   return(
     <React.Fragment>
       {/*<SVGTag />*/}

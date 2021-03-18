@@ -149,6 +149,7 @@ export async function getStaticProps({ params }) {
   return {
     props : {
       layout: {
+        sitePhoto: await getAssetById(globalAssetsID.sitePhoto),
         herologo: await getAssetById(globalAssetsID.herologo),
         labelFooter: {
           livraison: await getAssetById(globalAssetsID.livraison),

@@ -13,6 +13,7 @@ export const Layout = ({
   slogan,
   labelFooter
 }) => {
+  console.log(sitePhoto)
   return (
     <React.Fragment>
       <Head>
@@ -30,7 +31,7 @@ export const Layout = ({
         <meta property="og:site_name" content={siteInfos.name} key="ogsitename" />
         <meta property="og:title" content={`${siteInfos.name} | ${title}`} key="title" />        
         <meta property="og:description" content={siteInfos.description} key="description" />
-        <meta property="og:image" content={sitePhoto} key="ogimage" />
+        <meta property="og:image" content={sitePhoto.url} key="ogimage" />
 
         <link rel="preconnect" href="https://app.snipcart.com" />
         <link rel="preconnect" href="https://cdn.snipcart.com" />

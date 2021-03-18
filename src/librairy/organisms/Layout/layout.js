@@ -2,27 +2,35 @@ import PropTypes from "prop-types";
 import { Header, Footer } from "@librairy/organisms/index"; 
 import Head from 'next/head';
 import { Anchors } from "@librairy/atoms/Links";
+import { siteInfos, colors } from '@utils/site-constants';
 
 export const Layout = ({
   children,
   title = 'Papeterie pleine de vie',
   type = "index-header",
+  sitePhoto,
   herologo,
   slogan,
   labelFooter
 }) => {
   return (
-    <>
+    <React.Fragment>
       <Head>
-        <title>{`Studio Cynydd | ${title}`}</title>
+        <title>{`${siteInfos.name} | ${title}`}</title>
         <meta charSet="utf-8" />
-        <meta name="theme-color" content="#8d0c22" />
+        <meta name="theme-color" content={colors.cPrimary} />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <meta name="description" content="Boutique et information du Studio Cynydd, créations artisanales, fait-main français, designer graphique." />
-        <meta name="author" content="Studio Cynydd" />
-        <meta name="keywords" content="Papeterie, Fait-main, boutique, Cynydd, Rennes, cadeaux" />
-        <meta property="og:title" content="Studio Cynydd" />
-        <meta property="og:description" content="Boutique et information du Studio Cynydd, créations artisanales, fait-main français, designer graphique." />
+        <meta name="description" content={siteInfos.description} />
+        <meta name="author" content={siteInfos.author} />
+        <meta name="keywords" content={siteInfos.keywords} />
+
+        {/* Open Graph */}
+        <meta property="og:type" content="siteweb" key="ogtype" />
+        <meta property="og:url" content="https://studiocynydd.fr/" key="ogurl" />
+        <meta property="og:site_name" content={siteInfos.name} key="ogsitename" />
+        <meta property="og:title" content={`${siteInfos.name} | ${title}`} key="title" />        
+        <meta property="og:description" content={siteInfos.description} key="description" />
+        <meta property="og:image" content={sitePhoto} key="ogimage" />
 
         <link rel="preconnect" href="https://app.snipcart.com" />
         <link rel="preconnect" href="https://cdn.snipcart.com" />
@@ -35,7 +43,7 @@ export const Layout = ({
         <Anchors />
       </main>
       <Footer labelFooter={labelFooter} />
-    </>
+    </React.Fragment>
   )
 }
 
